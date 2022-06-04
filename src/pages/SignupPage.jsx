@@ -1,6 +1,34 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import styled from "styled-components";
+
+const Form = styled.form`
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 1rem;
+  label {
+    color: ${({ theme }) => theme.colors.mainOrange || "#000000"};
+    align-self: flex-start;
+  }
+  input {
+    ${({ theme }) => theme.colors.lightGrey || "#B9AFAC"};
+    padding: 12px 10px;
+    margin: 12px;
+  }
+  button {
+    background-color: ${({ theme }) => theme.colors.black || "#000000"};
+    border-style: none;
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+    width: 100%;
+    height: 3rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    padding: 50px 20px 50px 20;
+    text-align: center;
+    font-size: 18px;
+  }
+`;
 
 function SignupPage() {
   const [username, setUsername] = useState("");
@@ -10,6 +38,8 @@ function SignupPage() {
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
+
+  /* const { storeToken, autenticateUser } = useContext(AuthContext); */
 
   const handleUsername = (e) => setUsername(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
@@ -35,33 +65,36 @@ function SignupPage() {
       <h1>Art in the Pocket</h1>
       <div>
         <h4>Signup</h4>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Name</label>
+        <Form onSubmit={handleSubmit}>
+          <label htmlFor="username"></label>
           <input
             type="text"
+            placeholder="username"
             name="username"
             value={username}
             onChange={handleUsername}
           />
 
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email"></label>
           <input
             type="text"
+            placeholder="youremail@email.com"
             name="email"
             value={email}
             onChange={handleEmail}
           />
 
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password"></label>
           <input
             type="password"
+            placeholder="your password"
             name="password"
             value={password}
             onChange={handlePassword}
           />
 
           <button type="submit">Sign Up</button>
-        </form>
+        </Form>
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <p>Already have an account?</p>

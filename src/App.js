@@ -37,56 +37,51 @@ function App() {
             </IsAnon>
           }
         />
-        <Route>
-          <ProfilePage
-            path="/profile"
-            element={
-              <IsPrivate>
-                <ProfilePage />
-              </IsPrivate>
-            }
-          ></ProfilePage>
-        </Route>
-        <Route>
-          <EditProfile
-            path="/edit-profile"
-            element={
-              <IsPrivate>
-                <EditProfile />
-              </IsPrivate>
-            }
-          ></EditProfile>
-        </Route>
-        <Route>
-          <SearchPage
-            path="/search"
-            element={
-              <IsPrivate>
-                <SearchPage />
-              </IsPrivate>
-            }
-          ></SearchPage>
-        </Route>
-        <Route>
-          <DetailsPage
-            path="/details"
-            element={
-              <IsPrivate>
-                <DetailsPage />
-              </IsPrivate>
-            }
-          ></DetailsPage>
-        </Route>
-        <Route>
-          <CollectionPage
-            path="/collection"
-            element={
-              <IsPrivate>
-                <CollectionPage />
-              </IsPrivate>
-            }
-          ></CollectionPage>
-        </Route>
+        <Route
+          path="/profile"
+          element={
+            <IsPrivate>
+              <ProfilePage />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/edit-profile"
+          element={
+            <IsPrivate>
+              <EditProfile />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/search"
+          element={
+            <IsPrivate>
+              <SearchPage />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/details"
+          element={
+            <IsPrivate>
+              <DetailsPage />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/collection"
+          element={
+            <IsPrivate>
+              <CollectionPage />
+            </IsPrivate>
+          }
+        />
+
         <Route
           path="/collection-details"
           element={
@@ -96,26 +91,23 @@ function App() {
           }
         />
 
-        <Route>
-          <FavoritePage
-            path="/favorite"
-            element={
-              <IsPrivate>
-                <FavoritePage />
-              </IsPrivate>
-            }
-          ></FavoritePage>
-        </Route>
-        <Route>
-          <FavoriteDetailsPage
-            path="/favorite-details"
-            element={
-              <IsPrivate>
-                <FavoriteDetailsPage />
-              </IsPrivate>
-            }
-          ></FavoriteDetailsPage>
-        </Route>
+        <Route
+          path="/favorite"
+          element={
+            <IsPrivate>
+              <FavoritePage />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/favorite-details"
+          element={
+            <IsPrivate>
+              <FavoriteDetailsPage />
+            </IsPrivate>
+          }
+        />
       </Routes>
     </div>
   );
