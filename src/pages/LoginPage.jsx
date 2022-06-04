@@ -6,31 +6,29 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Form = styled.form`
-  @media screen and (min-width: 480px) {
-    display: flex;
-    flex-flow: column wrap;
-    font-size: 1rem;
-    label {
-      color: ${({ theme }) => theme.colors.mainOrange || "#000000"};
-      align-self: flex-start;
-    }
-    input {
-      ${({ theme }) => theme.colors.lightGrey || "#B9AFAC"};
-      padding: 12px 10px;
-      margin: 12px;
-    }
-    button {
-      background-color: ${({ theme }) => theme.colors.black || "#000000"};
-      border-style: none;
-      color: ${({ theme }) => theme.colors.white || " #ffffff"};
-      width: 100%;
-      height: 3rem;
-      margin-top: 1rem;
-      border-radius: 8px;
-      padding: 50px 20px 50px 20;
-      text-align: center;
-      font-size: 18px;
-    }
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 1rem;
+  label {
+    color: ${({ theme }) => theme.colors.mainOrange || "#000000"};
+    align-self: flex-start;
+  }
+  input {
+    ${({ theme }) => theme.colors.lightGrey || "#B9AFAC"};
+    padding: 12px 10px;
+    margin: 12px;
+  }
+  button {
+    background-color: ${({ theme }) => theme.colors.black || "#000000"};
+    border-style: none;
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+    width: 100%;
+    height: 3rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    padding: 50px 20px 50px 20;
+    text-align: center;
+    font-size: 18px;
   }
 `;
 
@@ -53,6 +51,7 @@ function LoginPage() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/auth/login`, body)
       .then((response) => {
+        console.log(response.data.authToken);
         storeToken(response.data.authToken);
         autenticateUser();
         navigate("/");

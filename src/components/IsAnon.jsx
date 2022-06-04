@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../context/auth.context';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
+import { useNavigate } from "react-router-dom";
 
 function IsAnon({ children }) {
   const { isLoggedIn, isLoading } = useContext(AuthContext);
@@ -12,7 +12,7 @@ function IsAnon({ children }) {
   if (!isLoggedIn) {
     return children;
   } else {
-    return navigate('/projects');
+    return navigate("/");
   }
 }
 
