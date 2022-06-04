@@ -1,29 +1,42 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import IsPrivate from "./components/IsPrivate";
+import IsAnon from "./components/IsAnon";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
-import LoginPage from "./page/LoginPage";
+import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfile from "./pages/EditProfile";
 import SearchPage from "./pages/SearchPage";
 import DetailsPage from "./pages/DetailsPage";
-import CollectionPage from "./page/CollectionPage";
+import CollectionPage from "./pages/CollectionPage";
+import CollectionDetailsPage from "./pages/CollectionDetailsPage";
 import FavoritePage from "./pages/FavoritePage";
+import FavoriteDetailsPage from "./pages/FavoriteDetailsPage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route>
-          <HomePage path="/" element={<HomePage />}></HomePage>
-        </Route>
-        <Route>
-          <SignupPage path="/signup" element={<SignupPage />} />
-        </Route>
-        <Route>
-          <SignupPage path="/login" element={<LoginPage />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              <SignupPage />
+            </IsAnon>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <IsAnon>
+              <LoginPage />
+            </IsAnon>
+          }
+        />
         <Route>
           <ProfilePage
             path="/profile"
@@ -74,16 +87,15 @@ function App() {
             }
           ></CollectionPage>
         </Route>
-        {/*   <Route>
-          <CollectionDetailsPage
-            path="/collection-details"
-            element={
-              <IsPrivate>
-                <CollectionDetailsPage />
-              </IsPrivate>
-            }
-          ></CollectionDetailsPage>
-        </Route> */}
+        <Route
+          path="/collection-details"
+          element={
+            <IsPrivate>
+              <CollectionDetailsPage />
+            </IsPrivate>
+          }
+        />
+
         <Route>
           <FavoritePage
             path="/favorite"
@@ -94,7 +106,7 @@ function App() {
             }
           ></FavoritePage>
         </Route>
-        {/*   <Route>
+        <Route>
           <FavoriteDetailsPage
             path="/favorite-details"
             element={
@@ -103,7 +115,7 @@ function App() {
               </IsPrivate>
             }
           ></FavoriteDetailsPage>
-        </Route> */}
+        </Route>
       </Routes>
     </div>
   );
