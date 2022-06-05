@@ -14,10 +14,12 @@ import CollectionPage from "./pages/CollectionPage";
 import CollectionDetailsPage from "./pages/CollectionDetailsPage";
 import FavoritePage from "./pages/FavoritePage";
 import FavoriteDetailsPage from "./pages/FavoriteDetailsPage";
+import NavbarBottom from "./components/NavbarBottom";
 
 function App() {
   return (
     <div className="App">
+      <NavbarBottom />
       <Routes>
         <Route path="/" element={<HomePage />} />
 
