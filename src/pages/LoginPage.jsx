@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import styled from "styled-components";
+import logImage from "../assets/images/paul gauguin-ia orana maria-1891.jpg";
 
 const Form = styled.form`
   display: flex;
@@ -17,6 +18,7 @@ const Form = styled.form`
     ${({ theme }) => theme.colors.lightGrey || "#B9AFAC"};
     padding: 12px 10px;
     margin: 12px;
+    border-radius: 12px;
   }
   button {
     background-color: ${({ theme }) => theme.colors.black || "#000000"};
@@ -29,6 +31,16 @@ const Form = styled.form`
     padding: 50px 20px 50px 20;
     text-align: center;
     font-size: 18px;
+  }
+  .bold-sng {
+    color: black;
+  }
+  link {
+    text-decoration: none;
+  }
+  .bkgd-img {
+    heigth: 100vh;
+    width: 100vw;
   }
 `;
 
@@ -63,35 +75,47 @@ function LoginPage() {
 
   return (
     <div className="LoginPage">
-      <h1>Art in the Pocket</h1>
-      <div>
-        <h4>Login</h4>
-        <Form onSubmit={handleSubmit}>
-          <label htmlFor="email"></label>
-          <input
-            type="text"
-            placeholder="youremail@email.com"
-            name="email"
-            value={email}
-            onChange={handleEmail}
-          />
+      <body
+        className="bkgd-img"
+        style={{ backgroundImage: `url(${logImage})` }}
+      >
+        <h1>Art in the Pocket</h1>
+        <div>
+          <h4>Login</h4>
+          <Form onSubmit={handleSubmit}>
+            <label htmlFor="email"></label>
+            <input
+              type="text"
+              placeholder="youremail@email.com"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
 
-          <label htmlFor="password"></label>
-          <input
-            type="password"
-            placeholder="your password"
-            name="password"
-            value={password}
-            onChange={handlePassword}
-          />
+            <label htmlFor="password"></label>
+            <input
+              type="password"
+              placeholder="your password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
 
-          <button type="submit">Login</button>
-        </Form>
+            <button type="submit">Login</button>
+          </Form>
 
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <p>Don't you have an account?</p>
-        <Link to="/singup">Signup</Link>
-      </div>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <p>Don't you have an account?</p>
+          <Link to="/singup">
+            <b
+              className="
+        bold-sng"
+            >
+              Signup
+            </b>
+          </Link>
+        </div>
+      </body>
     </div>
   );
 }

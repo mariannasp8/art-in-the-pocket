@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import NavbarBottom from "../components/NavbarBottom";
 import homeImage from "../assets/images/splash_01.jpg";
 /*import { AuthContext } from "../context/auth.context";
  */
@@ -29,7 +28,7 @@ const StyledHomePage = styled.div`
   }
   h1 {
     font-size: 40px;
-    padding-top: 180px;
+    padding-top: 200px;
   }
   h5 {
     font-size: 40px;

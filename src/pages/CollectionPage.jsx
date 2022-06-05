@@ -1,13 +1,139 @@
-// import React from 'react'
-// import styled from "styled-components";
-// import axios from "axios";
+import React from "react";
+import styled from "styled-components";
+import axios from "axios";
+import collectionIcon from "../assets/icons/collection-icon.png.png";
 
+const StyledCollection = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 1rem;
+  .profile-section {
+    heigth: 50hw;
+    width: 80vw;
+    border: 1px solid green;
+    dispkay: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    align-content: flex-end;
+    justify-content: space-between;
+  }
+  .p {
+    font-size: 12px;
+  }
+  .main-section {
+    border: 1px solid blue;
+    height: 100hw;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+  .collection1 {
+    padding-top: 60px;
+    border: 1px solid red;
+    height: 40hw;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin: 0;
+  }
+  .firstCollection {
+    height: 60hw;
+    width: 40vw;
+    border: 1px solid orange;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+  .img-text {
+    heigth: 10hw;
+    width: 40vw;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+  .icons {
+    height: 1.2rem;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 26px;
+  }
+  .paintor-name {
+    font-size: 12px;
+  }
+  p {
+    font-size: 10px;
+  }
+  .paiting-name {
+    font-size: 14px;
+  }
+`;
 
+function CollectionPage() {
+  return (
+    <StyledCollection>
+      <div>
+        <section className="profile-section">
+          <h5>
+            Welcome <b>Vincent</b>
+          </h5>
+          <p>AVATAR</p>
+        </section>
+        <section className="main-section">
+          <h3>
+            Art in your pocket{" "}
+            <img className="icons" src={collectionIcon} alt="collection-icon" />
+          </h3>
+          <div className="collection1">
+            <h4>
+              My Collection <em>Joan Mirò</em>
+            </h4>
+            <div className="firstCollection">
+              <img
+                className="icons"
+                src="../assets/paintings/joan miro-contellation toward the rainbow-1941.jpg"
+                alt="collection-icon"
+              />
+              <div className="img-text">
+                <h5 className="paintor-name">Joan Mirò</h5>
+                <p>1928</p>
+              </div>
+              <div>
+                <p className="paiting-name">Potato</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h4>
+              My Collection <em>Portraits</em>
+            </h4>
+            <img
+              className="icons"
+              src="../assets/paintings/jean dominique ingres-josephine-eleonore-marie-paulina-1951-53.jpg"
+              alt="collection-icon"
+            />
+          </div>
+        </section>
+      </div>
+    </StyledCollection>
+  );
+}
 
-// function CollectionPage() {
-//   return (
-//     <div>CollectionPage;</div>
-//   )
-// }
-
-// export default CollectionPage;
+export default CollectionPage;

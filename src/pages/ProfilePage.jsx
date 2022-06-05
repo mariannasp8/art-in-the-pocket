@@ -3,11 +3,10 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import homeIcon from "../assets/icons/home-icon.png.png";
+import Avatar from "../components/Avatar";
 import heartIcon from "../assets/icons/heart-icon.png.png";
 import collectionIcon from "../assets/icons/collection-icon.png.png";
-import profileIcon from "../assets/icons/profile-icon.png.png";
-import searchIcon from "../assets/icons/search-icon.png.png";
+import ProfilePicture from "../assets/images/bronzino-portrair of a young man-1530.jpg";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -18,10 +17,11 @@ const StyledProfile = styled.div`
     border: 1px solid green;
   }
   .section2 {
+    border: 1px solid blue;
     height: 30hw;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     align-content: flex-start;
     justify-content: flex-start;
   }
@@ -31,10 +31,11 @@ const StyledProfile = styled.div`
     height: 40hw;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     align-content: flex-start;
     justify-content: flex-start;
-    gap: 1.2rem;
+    gap: 1rem;
+    margin:0;
   }
   .text-option-box {
     text-decoration: none;
@@ -43,6 +44,12 @@ const StyledProfile = styled.div`
   }
   .icons {
     height: 1.2rem;
+  }
+  h5{
+    font-size:18px
+  }
+  h3{
+    font-size:26px
   }
 `;
 
@@ -72,10 +79,17 @@ function ProfilePage() {
     <StyledProfile>
       <div>
         <section className="section1">
-          <h5>Here it will be the profile picture avatar</h5>
+      
+          <Avatar
+            src={ProfilePicture}
+            width="20px"
+            alt="defaul profile picture"
+          />
           {/* <img src={user.img} alt="profile-picture" className="profile-pic" /> */}
           <h5> {loggedUser.name} </h5>
-          <h5>Vincent Van Gogh</h5>
+          <h3>
+            <b>Vincent Van Gogh</b>
+          </h3>
         </section>
         <section className="section2">
           <h5>Name: {loggedUser.name}</h5>

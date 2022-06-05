@@ -15,6 +15,7 @@ import CollectionDetailsPage from "./pages/CollectionDetailsPage";
 import FavoritePage from "./pages/FavoritePage";
 import FavoriteDetailsPage from "./pages/FavoriteDetailsPage";
 import NavbarBottom from "./components/NavbarBottom";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -52,65 +53,66 @@ function App() {
         <Route
           path="/edit-profile"
           element={
-            <IsPrivate>
-              <EditProfile />
-            </IsPrivate>
+            // <IsPrivate>
+            <EditProfile />
+            // </IsPrivate>
           }
         />
 
         <Route
           path="/search"
           element={
-            <IsPrivate>
-              <SearchPage />
-            </IsPrivate>
+            // <IsPrivate>
+            <SearchPage />
+            // </IsPrivate>
           }
         />
 
         <Route
           path="/details"
           element={
-            <IsPrivate>
-              <DetailsPage />
-            </IsPrivate>
+            // <IsPrivate>
+            <DetailsPage />
+            // </IsPrivate>
           }
         />
 
         <Route
           path="/collection"
           element={
-            <IsPrivate>
-              <CollectionPage />
-            </IsPrivate>
+            // <IsPrivate>
+            <CollectionPage />
+            // </IsPrivate>
           }
         />
 
         <Route
           path="/collection-details"
           element={
-            <IsPrivate>
-              <CollectionDetailsPage />
-            </IsPrivate>
+            // <IsPrivate>
+            <CollectionDetailsPage />
+            // </IsPrivate>
           }
         />
 
         <Route
           path="/favorite"
           element={
-            <IsPrivate>
-              <FavoritePage />
-            </IsPrivate>
+            // <IsPrivate>
+            <FavoritePage />
+            // </IsPrivate>
           }
         />
 
         <Route
           path="/favorite-details"
           element={
-            <IsPrivate>
-              <FavoriteDetailsPage />
-            </IsPrivate>
+            // <IsPrivate>
+            <FavoriteDetailsPage />
+            // </IsPrivate>
           }
         />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

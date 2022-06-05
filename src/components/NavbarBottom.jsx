@@ -14,12 +14,12 @@ const StyledNavBottom = styled.nav`
   flex-direction: row;
   align-items: center;
   align-content: center;
-  background-color: whiteTransparent;
+  background-color: black;
   width: 80%;
   height: 7vh;
   position: fixed;
   bottom: 0;
-  border-radius: 24px 24px 0px 0px;
+  border-radius: 24px 24px 24px 24px;
   border: 1px solid white;
 `;
 
