@@ -4,21 +4,42 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import styled from "styled-components";
-import logImage from "../assets/images/paul gauguin-ia orana maria-1891.jpg";
+import logImage from "../assets/images/paul-gauguin-ia-orana-maria-1891.jpg";
+
+const StyledLogin = styled.body`
+  heigth: 100vh;
+  width: 100wh;
+  background-size: cover;
+
+  h1 {
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+  }
+  b {
+    color: ${({ theme }) => theme.colors.black || "#000000"};
+  }
+  link {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+  }
+  p {
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+  }
+`;
 
 const Form = styled.form`
   display: flex;
   flex-flow: column wrap;
   font-size: 1rem;
-  label {
-    color: ${({ theme }) => theme.colors.mainOrange || "#000000"};
-    align-self: flex-start;
-  }
+  padding: 0px 20px 20px 20px;
+  border-radius: 10px;
+  background-color: hsla(0, 100%, 99%, 0.4);
+
   input {
     ${({ theme }) => theme.colors.lightGrey || "#B9AFAC"};
     padding: 12px 10px;
     margin: 12px;
     border-radius: 12px;
+    background-color: hsla(0, 100%, 99%, 0.4);
   }
   button {
     background-color: ${({ theme }) => theme.colors.black || "#000000"};
@@ -32,15 +53,10 @@ const Form = styled.form`
     text-align: center;
     font-size: 18px;
   }
-  .bold-sng {
-    color: black;
-  }
-  link {
-    text-decoration: none;
-  }
-  .bkgd-img {
-    heigth: 100vh;
-    width: 100vw;
+
+  h4 {
+    color: ${({ theme }) => theme.colors.black || "#000000"};
+    font-size: 18px;
   }
 `;
 
@@ -75,14 +91,11 @@ function LoginPage() {
 
   return (
     <div className="LoginPage">
-      <body
-        className="bkgd-img"
-        style={{ backgroundImage: `url(${logImage})` }}
-      >
+      <StyledLogin style={{ backgroundImage: `url(${logImage})` }}>
         <h1>Art in your Pocket</h1>
         <div>
-          <h4>Login</h4>
           <Form onSubmit={handleSubmit}>
+            <h4>Login</h4>
             <label htmlFor="email"></label>
             <input
               type="text"
@@ -115,7 +128,7 @@ function LoginPage() {
             </b>
           </Link>
         </div>
-      </body>
+      </StyledLogin>
     </div>
   );
 }
