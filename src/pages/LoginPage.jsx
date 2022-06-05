@@ -79,7 +79,7 @@ function LoginPage() {
         className="bkgd-img"
         style={{ backgroundImage: `url(${logImage})` }}
       >
-        <h1>Art in the Pocket</h1>
+        <h1>Art in your Pocket</h1>
         <div>
           <h4>Login</h4>
           <Form onSubmit={handleSubmit}>

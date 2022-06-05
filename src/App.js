@@ -17,6 +17,9 @@ import FavoriteDetailsPage from "./pages/FavoriteDetailsPage";
 import NavbarBottom from "./components/NavbarBottom";
 import ErrorPage from "./pages/ErrorPage";
 
+
+
+
 function App() {
   return (
     <div className="App">

@@ -4,8 +4,8 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import Avatar from "../components/Avatar";
-import heartIcon from "../assets/icons/heart-icon.png.png";
-import collectionIcon from "../assets/icons/collection-icon.png.png";
+import heartIcon from "../assets/icons/heart.2.png";
+import collectionIcon from "../assets/icons/collection.2.png";
 import ProfilePicture from "../assets/images/bronzino-portrair of a young man-1530.jpg";
 
 const StyledProfile = styled.div`
@@ -14,11 +14,15 @@ const StyledProfile = styled.div`
   font-size: 1rem;
   .section1 {
     heigth: 50hw;
+    width: 70vw;
     border: 1px solid green;
+    
   }
+
   .section2 {
     border: 1px solid blue;
     height: 30hw;
+    width: 70vw;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -29,6 +33,7 @@ const StyledProfile = styled.div`
     padding-top: 60px;
     border: 1px solid red;
     height: 40hw;
+    width: 70vw;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -46,10 +51,10 @@ const StyledProfile = styled.div`
     height: 1.2rem;
   }
   h5{
-    font-size:18px
+    font-size:16px
   }
   h3{
-    font-size:26px
+    font-size:20px
   }
 `;
 
@@ -79,14 +84,15 @@ function ProfilePage() {
     <StyledProfile>
       <div>
         <section className="section1">
-      
-          <Avatar
-            src={ProfilePicture}
-            width="20px"
-            alt="defaul profile picture"
-          />
-          {/* <img src={user.img} alt="profile-picture" className="profile-pic" /> */}
-          <h5> {loggedUser.name} </h5>
+          <div>
+            <Avatar
+              src={ProfilePicture}
+              width="20px"
+              alt="defaul profile picture"
+            />
+            {/* <img src={user.img} alt="profile-picture" className="profile-pic" /> */}
+            {/*  <h5> {loggedUser.name} </h5> */}
+          </div>
           <h3>
             <b>Vincent Van Gogh</b>
           </h3>

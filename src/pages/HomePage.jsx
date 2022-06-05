@@ -44,6 +44,8 @@ const StyledHomePage = styled.div`
   .bkgd-img {
     heigth: 100vh;
     width: 100vw;
+    background-size: cover;
+    ${"" /* background-position: center; */}
   }
   b {
     color: black;

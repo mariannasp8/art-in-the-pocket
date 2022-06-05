@@ -2,22 +2,42 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import signImage from "../assets/images/pieter de hooch-the visit-1657.jpg";
+import signImage from "../assets/images/pieter-de-hooch-the-visit-1657.jpg";
+
+const StyledSignup = styled.body`
+  heigth: 100vh;
+  width: 100wh;
+  background-size: cover;
+
+  h1 {
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+  }
+  b {
+    color: ${({ theme }) => theme.colors.black || "#000000"};
+  }
+  link {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+  }
+  p {
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+  }
+`;
 
 const Form = styled.form`
   display: flex;
   flex-flow: column wrap;
   font-size: 1rem;
+  padding: 0px 20px 20px 20px;
+  border-radius: 10px;
+  background-color: hsla(0, 100%, 99%, 0.4);
 
-  label {
-    color: ${({ theme }) => "#000000"};
-    align-self: flex-start;
-  }
   input {
     ${({ theme }) => theme.colors.lightGrey || "#B9AFAC"};
     padding: 12px 10px;
     margin: 12px;
     border-radius: 12px;
+    background-color: hsla(0, 100%, 99%, 0.4);
   }
   button {
     background-color: ${({ theme }) => theme.colors.black || "#000000"};
@@ -31,15 +51,10 @@ const Form = styled.form`
     text-align: center;
     font-size: 18px;
   }
-  b {
-    color: black;
-  }
-  Link {
-    text-decoration: none;
-  }
-  .bkgd-img {
-    heigth: 100vh;
-    width: 100vw;
+
+  h4 {
+    color: ${({ theme }) => theme.colors.black || "#000000"};
+    font-size: 18px;
   }
 `;
 
@@ -75,14 +90,11 @@ function SignupPage() {
 
   return (
     <div className="SignupPage">
-      <body
-        className="bkgd-img"
-        style={{ backgroundImage: `url(${signImage})` }}
-      >
-        <h1>Art in the Pocket</h1>
+      <StyledSignup style={{ backgroundImage: `url(${signImage})` }}>
+        <h1>Art in your Pocket</h1>
         <div>
-          <h4>Signup</h4>
           <Form onSubmit={handleSubmit}>
+            <h4>Signup</h4>
             <label htmlFor="username"></label>
             <input
               type="text"
@@ -120,7 +132,7 @@ function SignupPage() {
             <b>Login</b>
           </Link>
         </div>
-      </body>
+      </StyledSignup>
     </div>
   );
 }
