@@ -43,7 +43,7 @@ function App() {
           }
         />
         <Route
-          path="/profile"
+          path="/profile/:userId"
           element={
             <IsPrivate>
               <ProfilePage />
@@ -52,7 +52,7 @@ function App() {
         />
 
         <Route
-          path="/edit-profile"
+          path="/edit-profile/:userId"
           element={
             <IsPrivate>
               <EditProfile />

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import homeIcon from "../assets/icons/home.2.png";
 import heartIcon from "../assets/icons/heart.2.png";
@@ -20,7 +21,7 @@ const StyledNavBottom = styled.nav`
   align-items: center;
   align-content: center;
   background-color: rgba(100, 100, 100, 0.5);
-  border: 1px solid white;
+  ${"" /* border: 1px solid white; */}
   width: 80%;
   height: 7vh;
   position: fixed;
@@ -32,17 +33,16 @@ const SelectedIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
   padding: 0;
-  width: 52px;
-  height: 52px;
+  width: 30px;
+  height: 30px;
   ${"" /* border: 1px solid red; */}
 `;
 const NavLink = styled(Link)`
   ${"" /* border: 1px solid blue; */}
   text-decoration: none;
   color: black;
-  height: 15vh;
+  height: 2vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,6 +62,7 @@ const NavIcons = styled.img`
 `;
 
 function NavbarBottom() {
+  const { userId } = useParams();
   return (
     <>
       <StyledPage>
@@ -81,7 +82,7 @@ function NavbarBottom() {
               <NavIcons src={collectionIcon} alt="Collection Icon" />
             </SelectedIcon>
           </NavLink>
-          <NavLink to="/profile">
+          <NavLink to={`/profile/${userId}`}>
             <SelectedIcon>
               <NavIcons src={profileIcon} alt="Profile Icon" />
             </SelectedIcon>

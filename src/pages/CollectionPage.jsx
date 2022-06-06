@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Avatar from "../components/Avatar";
@@ -10,6 +11,7 @@ import NavbarBottom from "../components/NavbarBottom";
 import painting1 from "../assets/paintings/potato-joan-miro-1928.jpg";
 import painting2 from "../assets/paintings/joan-miro-contellation-toward-the-rainbow-1941.jpg";
 import deleteIcon from "../assets/icons/delete.2.png";
+import profileIcon from "../assets/icons/profile.2.png";
 
 const StyledCollection = styled.div`
   display: flex;
@@ -224,6 +226,12 @@ function CollectionPage() {
               src="../assets/paintings/jean-dominique-ingres-josephine-eleonore-marie-paulina-1951-53.jpg"
               alt="collection-icon"
             />
+          </div>
+          <div>
+            <Link to="/profile" className="GoBack">
+              My Profile
+              <img className="icons" src={profileIcon} alt="profile-icon" />
+            </Link>
           </div>
         </section>
       </div>

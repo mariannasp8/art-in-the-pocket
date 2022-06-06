@@ -39,6 +39,7 @@ const Form = styled.form`
     padding: 12px 10px;
     margin: 12px;
     border-radius: 12px;
+    border: none;
     background-color: hsla(0, 100%, 99%, 0.4);
   }
   button {

@@ -10,6 +10,7 @@ const StyledLogin = styled.body`
   heigth: 100vh;
   width: 100wh;
   background-size: cover;
+  background-position: center;
 
   h1 {
     color: ${({ theme }) => theme.colors.white || " #ffffff"};
@@ -17,12 +18,15 @@ const StyledLogin = styled.body`
   b {
     color: ${({ theme }) => theme.colors.black || "#000000"};
   }
-  link {
+  .link {
+    text-decoration: none;
+  }
+  .link b {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.white || " #ffffff"};
   }
   p {
-    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+    color: ${({ theme }) => theme.colors.black || "#000000"};
   }
 `;
 
@@ -39,6 +43,7 @@ const Form = styled.form`
     padding: 12px 10px;
     margin: 12px;
     border-radius: 12px;
+    border: none;
     background-color: hsla(0, 100%, 99%, 0.4);
   }
   button {
@@ -120,7 +125,7 @@ function LoginPage() {
 
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <p>Don't you have an account?</p>
-          <Link to="/singup">
+          <Link className="link" to="/singup">
             <b
               className="
         bold-sng"

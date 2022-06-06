@@ -15,7 +15,7 @@ const StyledErrorPage = styled.div`
     padding-top: 140px;
   }
   h3 {
-    font-size: 28px;
+    font-size: 40px;
     color: ${({ theme }) => theme.colors.white || " #ffffff"};
   }
   p {
@@ -23,9 +23,9 @@ const StyledErrorPage = styled.div`
     color: ${({ theme }) => theme.colors.white || " #ffffff"};
     ${"" /* border: 1px solid red; */}
   }
-  link {
+  .link {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+    color: ${({ theme }) => theme.colors.black || "#000000"};
   }
   .goToHome {
     color: ${({ theme }) => theme.colors.black || "#000000"};
@@ -45,11 +45,13 @@ function ErrorPage() {
           <h3>404</h3>
           <p>Page not found.</p>
           <div>
-            <p className="goToHome">Go to the Home Page</p>
-            <Link to="/">
-              {" "}
-              <b>Home Page</b>
-            </Link>
+            <p className="goToHome">
+              Go to the{" "}
+              <Link className="link" to="/">
+                {" "}
+                <b>Home Page</b>
+              </Link>
+            </p>
           </div>
         </body>
       </div>

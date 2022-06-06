@@ -47,7 +47,7 @@ const StyledProfile = styled.div`
   .text-option-box {
     text-decoration: none;
     font-size: 18px
-    font-weight: bold;
+    color: ${({ theme }) => theme.colors.black || "#000000"};
   }
   .icons {
     height: 1.2rem;
@@ -61,8 +61,10 @@ const StyledProfile = styled.div`
   .edit-pro {
     text-decoration: none;
   }
-  .linkToLog p {
+  .linkToLog {
     text-decoration: none;
+    color: ${({ theme }) => theme.colors.black || "#000000"};
+    font-size: 14px
   }
   b {
     color: ${({ theme }) => theme.colors.black || "#000000"};
@@ -80,14 +82,14 @@ const StyledProfile = styled.div`
 function ProfilePage() {
   const [picture, setPicture] = useState("");
   const [loggedUser, setLoggedUser] = useState({});
-
+  const { userId } = useParams();
   const handlePicture = (file) => setPicture(file);
 
   const getUser = async () => {
     try {
       const storedToken = localStorage.getItem("authToken");
       let response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/auth/profile`,
+        `${process.env.REACT_APP_API_URL}/auth/profile/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${storedToken}`,
@@ -149,7 +151,7 @@ function ProfilePage() {
           {/* <Link to="/friends"> My Friends</Link> */}
         </div>
         <div className="last-box">
-          <Link className="edit-pro" to="/edit-profile">
+          <Link className="edit-pro" to={`/profile/${userId}`}>
             {" "}
             Edit Profile <img
               className="icons"

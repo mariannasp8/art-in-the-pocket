@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import editProImg from "../assets/images/portrait-ot-the-artirs-john-vanderlyn-1800.jpg";
+import profileIcon from "../assets/icons/profile.2.png";
 
 const StyledEditProfile = styled.body`
   heigth: 100vh;
   width: 100wh;
   background-size: cover;
+  background-position: center;
+  h1 {
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+  }
   h3 {
     color: ${({ theme }) => theme.colors.white || " #ffffff"};
     width: 100%;
+  }
+  .profileIcon {
+    widht: 20px;
+  }
+  .goBack {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.black || "#000000"};
   }
 `;
 
@@ -27,6 +40,7 @@ const Form = styled.form`
     padding: 12px 10px;
     margin: 12px;
     border-radius: 12px;
+    border: none;
     background-color: hsla(0, 100%, 99%, 0.4);
   }
   label {
@@ -51,12 +65,41 @@ const Form = styled.form`
     color: ${({ theme }) => theme.colors.black || "#000000"};
     font-size: 18px;
   }
+  .goBack {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 function EditProfile() {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [img, setImg] = useState([]);
+  const { userId } = useParams();
+
+  const getProfile = async () => {
+    try {
+      const getToken = localStorage.getItem("authToken");
+      let response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/auth/profile/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken}`,
+          },
+        }
+      );
+      setUsername(response.data.username);
+      setName(response.data.name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   const navigate = useNavigate();
   const handleUsername = (e) => setUsername(e.target.value);
@@ -70,29 +113,29 @@ function EditProfile() {
     const getToken = localStorage.getItem("authToken");
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/auth/edit-profile`, body, {
-        headers: {
-          Authorization: `Bearer ${getToken}`,
-        },
-      })
+      .put(
+        `${process.env.REACT_APP_API_URL}/auth/edit-profile/${userId}`,
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken}`,
+          },
+        }
+      )
       .then(() => {
         setUsername("");
         setName("");
         setImg("");
-        navigate("/profile");
+        navigate(`/profile/${userId}`);
         // props.refreshProjects();
       })
       .catch((err) => console.log(err));
-
-    /*  useEffect(() => {
-      getProject();
-    }, []);
- */
   };
 
   return (
     <div>
       <StyledEditProfile style={{ backgroundImage: `url(${editProImg})` }}>
+        <h1>Art in your Pocket</h1>
         <h3>Edit your Profile</h3>
         <Form onSubmit={handleSubmit}>
           <label htmlFor="username">Username: </label>
@@ -108,6 +151,17 @@ function EditProfile() {
 
           <button type="submit">Edit</button>
         </Form>
+        <div>
+          <Link to="/profile" className="GoBack">
+            My Profile
+            <img
+              className="profileIcon"
+              src={profileIcon}
+              width="32px"
+              alt="profile-icon"
+            />
+          </Link>
+        </div>
       </StyledEditProfile>
     </div>
   );
