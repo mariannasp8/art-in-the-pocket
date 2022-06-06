@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import axios from "axios";
+import Avatar from "../components/Avatar";
+import ProfilePicture from "../assets/images/bronzino-portrair-of-a-young-man-1530.jpg";
 import collectionIcon from "../assets/icons/collection.2.png";
 import NavbarBottom from "../components/NavbarBottom";
-import painting1 from "../assets/paintings/potato-joan miro-1928.jpg";
+import painting1 from "../assets/paintings/potato-joan-miro-1928.jpg";
+import painting2 from "../assets/paintings/joan-miro-contellation-toward-the-rainbow-1941.jpg";
 
 const StyledCollection = styled.div`
   display: flex;
@@ -20,7 +23,7 @@ const StyledCollection = styled.div`
     justify-content: space-between;
   }
   .welcome {
-    margin-left: 100px;
+    margin-left: 90px;
   }
   .p {
     font-size: 12px;
@@ -50,8 +53,15 @@ const StyledCollection = styled.div`
   }
   .firstCollection {
     height: 60hw;
-    width: 40vw;
+    width: 36vw;
     border: 1px solid orange;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+  .eachCollection {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -60,16 +70,17 @@ const StyledCollection = styled.div`
   }
   .img-text {
     heigth: 10hw;
-    width: 40vw;
+    width: 35vw;
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    align-content: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
   }
   .icons {
     height: 1.2rem;
+  }
+  .paiting1 {
   }
   h5 {
     font-size: 14px;
@@ -92,6 +103,25 @@ const StyledCollection = styled.div`
 `;
 
 function CollectionPage() {
+
+const [piece, setPiece] = useState([])
+
+const getPiece = async () =>{
+try{
+
+let response = await axios.get("http://localhost:5005/api/search-pieces")
+
+setPiece(response.data)
+
+
+} catch (error) {
+  
+}
+
+}
+
+
+
   return (
     <StyledCollection>
       <div>
@@ -99,7 +129,11 @@ function CollectionPage() {
           <h5 className="welcome">
             Welcome <b>Vincent</b>
           </h5>
-          <p>AVATAR</p>
+          <Avatar
+            image={ProfilePicture}
+            width="70px"
+            alt="defaul profile picture"
+          />
         </section>
         <section className="main-section">
           <h3>
@@ -111,14 +145,27 @@ function CollectionPage() {
               My Collection <em>Joan Mirò</em>
             </h4>
             <div className="firstCollection">
-              <img className="icons" src={painting1} alt="collection-icon" />
-              <div className="img-text">
-                <h5 className="paintor-name">Joan Mirò</h5>
-                <p>1928</p>
-              </div>
-              <div>
+              <div className="eachCollection">
+                <img
+                  className="painting1"
+                  src={painting1}
+                  width="140px"
+                  alt="collection paiting 1"
+                />
+                <div className="img-text">
+                  <h5 className="paintor-name">Joan Mirò</h5>
+                  <p>1928</p>
+                </div>
+
                 <p className="paiting-name">Potato</p>
               </div>
+
+              <img
+                className="painting2"
+                src={painting2}
+                width="140px"
+                alt="collection paiting 2"
+              />
             </div>
           </div>
           <div>

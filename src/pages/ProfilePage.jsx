@@ -93,14 +93,14 @@ function ProfilePage() {
           <div>
             <Avatar
               image={ProfilePicture}
-              width="20px"
+              width="180px"
               alt="defaul profile picture"
             />
             {/* <img src={user.img} alt="profile-picture" className="profile-pic" /> */}
             {/*  <h5> {loggedUser.name} </h5> */}
           </div>
           <h3>
-            <b>Vincent Van Gogh</b>
+            <b>(loggedUser &&{loggedUser.username})</b>
           </h3>
         </section>
         {loggedUser && (
