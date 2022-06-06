@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context";
 import Avatar from "../components/Avatar";
 import heartIcon from "../assets/icons/heart.2.png";
 import collectionIcon from "../assets/icons/collection.2.png";
-import ProfilePicture from "../assets/images/bronzino-portrair of a young man-1530.jpg";
+import ProfilePicture from "../assets/images/bronzino-portrair-of-a-young-man-1530.jpg";
 
 const StyledProfile = styled.div`
   display: flex;

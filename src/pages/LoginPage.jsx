@@ -66,7 +66,7 @@ function LoginPage() {
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
-  const { storeToken, autenticateUser } = useContext(AuthContext);
+  const { storeToken, authenticateUser } = useContext(AuthContext);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -81,11 +81,12 @@ function LoginPage() {
       .then((response) => {
         console.log(response.data.authToken);
         storeToken(response.data.authToken);
-        autenticateUser();
+        authenticateUser();
         navigate("/");
       })
       .catch((err) => {
-        setErrorMessage(err.response.data.errorMessage);
+        // setErrorMessage(err.response.data.errorMessage);
+        console.log(err);
       });
   };
 

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
-import collectionIcon from "../assets/icons/collection-icon.png.png";
+import collectionIcon from "../assets/icons/collection.2.png";
+import NavbarBottom from "../components/NavbarBottom";
 
 const StyledCollection = styled.div`
   display: flex;
@@ -11,11 +12,14 @@ const StyledCollection = styled.div`
     heigth: 50hw;
     width: 80vw;
     border: 1px solid green;
-    dispkay: flex;
+    display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     align-content: flex-end;
     justify-content: space-between;
+  }
+  .welcome {
+    margin-left: 100px;
   }
   .p {
     font-size: 12px;
@@ -91,7 +95,7 @@ function CollectionPage() {
     <StyledCollection>
       <div>
         <section className="profile-section">
-          <h5>
+          <h5 className="welcome">
             Welcome <b>Vincent</b>
           </h5>
           <p>AVATAR</p>
@@ -108,7 +112,7 @@ function CollectionPage() {
             <div className="firstCollection">
               <img
                 className="icons"
-                src="../assets/paintings/joan miro-contellation toward the rainbow-1941.jpg"
+                src="../assets/paintings/joan-miro-contellation-toward-the-rainbow-1941.jpg"
                 alt="collection-icon"
               />
               <div className="img-text">
@@ -126,12 +130,13 @@ function CollectionPage() {
             </h4>
             <img
               className="icons"
-              src="../assets/paintings/jean dominique ingres-josephine-eleonore-marie-paulina-1951-53.jpg"
+              src="../assets/paintings/jean-dominique-ingres-josephine-eleonore-marie-paulina-1951-53.jpg"
               alt="collection-icon"
             />
           </div>
         </section>
       </div>
+      <NavbarBottom />
     </StyledCollection>
   );
 }
