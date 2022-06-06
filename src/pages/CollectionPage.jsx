@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import collectionIcon from "../assets/icons/collection.2.png";
 import NavbarBottom from "../components/NavbarBottom";
+import painting1 from "../assets/paintings/potato-joan miro-1928.jpg";
 
 const StyledCollection = styled.div`
   display: flex;
@@ -110,11 +111,7 @@ function CollectionPage() {
               My Collection <em>Joan Mirò</em>
             </h4>
             <div className="firstCollection">
-              <img
-                className="icons"
-                src="../assets/paintings/joan-miro-contellation-toward-the-rainbow-1941.jpg"
-                alt="collection-icon"
-              />
+              <img className="icons" src={painting1} alt="collection-icon" />
               <div className="img-text">
                 <h5 className="paintor-name">Joan Mirò</h5>
                 <p>1928</p>

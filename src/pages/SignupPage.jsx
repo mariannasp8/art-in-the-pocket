@@ -15,8 +15,10 @@ const StyledSignup = styled.body`
   b {
     color: ${({ theme }) => theme.colors.black || "#000000"};
   }
-  link {
+  .link {
     text-decoration: none;
+  }
+  .link b {
     color: ${({ theme }) => theme.colors.white || " #ffffff"};
   }
   p {
@@ -127,7 +129,7 @@ function SignupPage() {
 
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <p>Already have an account?</p>
-          <Link to="/login">
+          <Link className="link" to="/login">
             {" "}
             <b>Login</b>
           </Link>

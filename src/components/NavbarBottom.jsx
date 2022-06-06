@@ -19,7 +19,7 @@ const StyledNavBottom = styled.nav`
   flex-direction: row;
   align-items: center;
   align-content: center;
-  background-color: rbga(100, 100, 100, 0.5);
+  background-color: rgba(100, 100, 100, 0.5);
   border: 1px solid white;
   width: 80%;
   height: 7vh;

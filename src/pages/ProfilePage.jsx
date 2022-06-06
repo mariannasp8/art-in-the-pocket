@@ -59,17 +59,23 @@ const StyledProfile = styled.div`
 `;
 
 function ProfilePage() {
-  const { isLoggedIn, user, logoutUser } = useContext(AuthContext);
   const [picture, setPicture] = useState("");
-  const [loggedUser, setLoggedUser] = useState({});
+  const [loggedUser, setLoggedUser] = useState(null);
 
   const handlePicture = (file) => setPicture(file);
 
   const getUser = async () => {
     try {
+      const storedToken = localStorage.getItem("authToken");
       let response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/auth/profile`
+        `${process.env.REACT_APP_API_URL}/auth/profile`,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
       );
+      console.log(response.data);
       setLoggedUser(response.data);
     } catch (err) {
       console.log(err);
@@ -86,7 +92,7 @@ function ProfilePage() {
         <section className="section1">
           <div>
             <Avatar
-              src={ProfilePicture}
+              image={ProfilePicture}
               width="20px"
               alt="defaul profile picture"
             />
@@ -97,12 +103,14 @@ function ProfilePage() {
             <b>Vincent Van Gogh</b>
           </h3>
         </section>
-        <section className="section2">
-          <h5>Name: {loggedUser.name}</h5>
-          <h5>Username: {loggedUser.username}</h5>
-          <h5>Email: {loggedUser.email}</h5>
-          {/*   <UploadProfilePic handlePicture={handlePicture} /> */}
-        </section>
+        {loggedUser && (
+          <section className="section2">
+            <h5>Name: {loggedUser.name}</h5>
+            <h5>Username: {loggedUser.username}</h5>
+            <h5>Email: {loggedUser.email}</h5>
+            {/* <  handlePicture={handlePicture} /> */}
+          </section>
+        )}
 
         <div className="option-box">
           <Link to="/collection" className="text-option-box">
