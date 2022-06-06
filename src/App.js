@@ -16,6 +16,7 @@ import FavoritePage from "./pages/FavoritePage";
 import FavoriteDetailsPage from "./pages/FavoriteDetailsPage";
 import NavbarBottom from "./components/NavbarBottom";
 import ErrorPage from "./pages/ErrorPage";
+import CollectionCreate from "./pages/CollectionCreate";
 
 function App() {
   return (
@@ -82,6 +83,14 @@ function App() {
           element={
             <IsPrivate>
               <CollectionPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/collection-create"
+          element={
+            <IsPrivate>
+              <CollectionCreate />
             </IsPrivate>
           }
         />

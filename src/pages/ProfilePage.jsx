@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import Avatar from "../components/Avatar";
 import heartIcon from "../assets/icons/heart.2.png";
+import addIcon from "../assets/icons/add.png";
 import collectionIcon from "../assets/icons/collection.2.png";
 import ProfilePicture from "../assets/images/bronzino-portrair-of-a-young-man-1530.jpg";
 
@@ -30,7 +31,8 @@ const StyledProfile = styled.div`
     justify-content: flex-start;
   }
   .option-box {
-    padding-top: 60px;
+    
+    padding-top: 20px;
     border: 1px solid red;
     height: 40hw;
     width: 70vw;
@@ -56,11 +58,28 @@ const StyledProfile = styled.div`
   h3{
     font-size:20px
   }
+  .edit-pro {
+    text-decoration: none;
+  }
+  .linkToLog p {
+    text-decoration: none;
+  }
+  b {
+    color: ${({ theme }) => theme.colors.black || "#000000"};
+  }
+  .last-box {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 20px;
+
+  }
 `;
 
 function ProfilePage() {
   const [picture, setPicture] = useState("");
-  const [loggedUser, setLoggedUser] = useState(null);
+  const [loggedUser, setLoggedUser] = useState({});
 
   const handlePicture = (file) => setPicture(file);
 
@@ -100,7 +119,7 @@ function ProfilePage() {
             {/*  <h5> {loggedUser.name} </h5> */}
           </div>
           <h3>
-            <b>(loggedUser &&{loggedUser.username})</b>
+            <b>{loggedUser && loggedUser.username}</b>
           </h3>
         </section>
         {loggedUser && (
@@ -117,12 +136,31 @@ function ProfilePage() {
             My Collection
             <img className="icons" src={collectionIcon} alt="collection-icon" />
           </Link>
+          <Link to="/collection-create" className="text-option-box">
+            {" "}
+            Create Collection{" "}
+            <img className="icons" src={addIcon} alt="heart-icon" />{" "}
+          </Link>
           <Link to="/favorite" className="text-option-box">
             {" "}
             My Favorites{" "}
             <img className="icons" src={heartIcon} alt="heart-icon" />{" "}
           </Link>
           {/* <Link to="/friends"> My Friends</Link> */}
+        </div>
+        <div className="last-box">
+          <Link className="edit-pro" to="/edit-profile">
+            {" "}
+            Edit Profile <img
+              className="icons"
+              src={addIcon}
+              alt="add-icon"
+            />{" "}
+          </Link>
+          <Link className="linkToLog" to="/">
+            {" "}
+            <p>Logout</p>
+          </Link>
         </div>
       </div>
     </StyledProfile>

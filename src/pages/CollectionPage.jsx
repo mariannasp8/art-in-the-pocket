@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Avatar from "../components/Avatar";
@@ -7,6 +9,7 @@ import collectionIcon from "../assets/icons/collection.2.png";
 import NavbarBottom from "../components/NavbarBottom";
 import painting1 from "../assets/paintings/potato-joan-miro-1928.jpg";
 import painting2 from "../assets/paintings/joan-miro-contellation-toward-the-rainbow-1941.jpg";
+import deleteIcon from "../assets/icons/delete.2.png";
 
 const StyledCollection = styled.div`
   display: flex;
@@ -103,27 +106,71 @@ const StyledCollection = styled.div`
 `;
 
 function CollectionPage() {
+  const [collections, setCollections] = useState([]);
 
-const [piece, setPiece] = useState([])
+  const getCollections = async () => {
+    const storedToken = localStorage.getItem("authToken");
+    try {
+      let response = await axios.get("http://localhost:5005/api/collection", {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      });
+      console.log(response.data);
+      setCollections(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const getPiece = async () =>{
-try{
+  useEffect(() => {
+    getCollections();
+  }, []);
 
-let response = await axios.get("http://localhost:5005/api/search-pieces")
+  const navigate = useNavigate();
 
-setPiece(response.data)
-
-
-} catch (error) {
-  
-}
-
-}
-
-
+  const deleteCollection = async (collectionId) => {
+    const storedToken = localStorage.getItem("authToken");
+    try {
+      await axios.delete(
+        `http://localhost:5005/api/collection/${collectionId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+      getCollections();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <StyledCollection>
+      {collections.length > 0 &&
+        collections.map((element) => {
+          return (
+            <>
+              {element.pieces.map((piece) => {
+                return (
+                  <>
+                    <img src={piece.img} alt="sol"></img>
+                    <h5>{piece.title}</h5>
+                    <p>{piece.date}</p>
+                  </>
+                );
+              })}
+              <img
+                onClick={() => deleteCollection(element._id)}
+                className="delete-icon"
+                src={deleteIcon}
+                alt="delete-icon"
+              />
+            </>
+          );
+        })}
+
       <div>
         <section className="profile-section">
           <h5 className="welcome">
