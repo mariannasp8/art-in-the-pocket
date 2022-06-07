@@ -7,7 +7,6 @@ import Avatar from "../components/Avatar";
 import heartIcon from "../assets/icons/heart.2.png";
 import addIcon from "../assets/icons/add.png";
 import collectionIcon from "../assets/icons/collection.2.png";
-import ProfilePicture from "../assets/images/bronzino-portrair-of-a-young-man-1530.jpg";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -82,14 +81,14 @@ const StyledProfile = styled.div`
 function ProfilePage() {
   const [picture, setPicture] = useState("");
   const [loggedUser, setLoggedUser] = useState({});
-  const { userId } = useParams();
+  const { user, logoutUser } = useContext(AuthContext);
   const handlePicture = (file) => setPicture(file);
 
   const getUser = async () => {
     try {
       const storedToken = localStorage.getItem("authToken");
       let response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/auth/profile/${userId}`,
+        `${process.env.REACT_APP_API_URL}/auth/profile/${user._id}`,
         {
           headers: {
             Authorization: `Bearer ${storedToken}`,
@@ -113,7 +112,7 @@ function ProfilePage() {
         <section className="section1">
           <div>
             <Avatar
-              image={ProfilePicture}
+              image={loggedUser.img}
               width="180px"
               alt="defaul profile picture"
             />
@@ -151,7 +150,7 @@ function ProfilePage() {
           {/* <Link to="/friends"> My Friends</Link> */}
         </div>
         <div className="last-box">
-          <Link className="edit-pro" to={`/profile/${userId}`}>
+          <Link className="edit-pro" to={`/edit-profile/${user._id}`}>
             {" "}
             Edit Profile <img
               className="icons"
@@ -159,10 +158,8 @@ function ProfilePage() {
               alt="add-icon"
             />{" "}
           </Link>
-          <Link className="linkToLog" to="/">
-            {" "}
-            <p>Logout</p>
-          </Link>
+
+          <button onClick={logoutUser}>Logout</button>
         </div>
       </div>
     </StyledProfile>

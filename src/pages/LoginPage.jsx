@@ -125,7 +125,7 @@ function LoginPage() {
 
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <p>Don't you have an account?</p>
-          <Link className="link" to="/singup">
+          <Link className="link" to="/signup">
             <b
               className="
         bold-sng"

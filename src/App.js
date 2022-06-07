@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import SignupPage from "./pages/SignupPage";
@@ -18,10 +17,12 @@ import NavbarBottom from "./components/NavbarBottom";
 import ErrorPage from "./pages/ErrorPage";
 import CollectionCreate from "./pages/CollectionCreate";
 
+
+
 function App() {
   return (
     <div className="App">
-      <NavbarBottom />
+      <NavbarBottom className="navBar"/>
       <Routes>
         <Route path="/" element={<HomePage />} />
 
@@ -43,7 +44,7 @@ function App() {
           }
         />
         <Route
-          path="/profile/:userId"
+          path="/profile"
           element={
             <IsPrivate>
               <ProfilePage />

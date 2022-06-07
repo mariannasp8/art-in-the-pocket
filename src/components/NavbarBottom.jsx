@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import homeIcon from "../assets/icons/home.2.png";
 import heartIcon from "../assets/icons/heart.2.png";
@@ -62,7 +62,8 @@ const NavIcons = styled.img`
 `;
 
 function NavbarBottom() {
-  const { userId } = useParams();
+  const { user } = useContext(AuthContext);
+
   return (
     <>
       <StyledPage>
@@ -82,7 +83,7 @@ function NavbarBottom() {
               <NavIcons src={collectionIcon} alt="Collection Icon" />
             </SelectedIcon>
           </NavLink>
-          <NavLink to={`/profile/${userId}`}>
+          <NavLink to={`/profile`}>
             <SelectedIcon>
               <NavIcons src={profileIcon} alt="Profile Icon" />
             </SelectedIcon>

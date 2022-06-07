@@ -126,7 +126,7 @@ function EditProfile() {
         setUsername("");
         setName("");
         setImg("");
-        navigate(`/profile/${userId}`);
+        navigate(`/profile}`);
         // props.refreshProjects();
       })
       .catch((err) => console.log(err));
