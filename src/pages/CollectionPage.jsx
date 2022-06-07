@@ -227,12 +227,6 @@ function CollectionPage() {
               alt="collection-icon"
             />
           </div>
-          <div>
-            <Link to="/profile" className="GoBack">
-              My Profile
-              <img className="icons" src={profileIcon} alt="profile-icon" />
-            </Link>
-          </div>
         </section>
       </div>
       <NavbarBottom />
