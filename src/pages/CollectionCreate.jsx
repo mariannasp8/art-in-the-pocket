@@ -49,7 +49,9 @@ const Form = styled.form`
 
 function CollectionCreate() {
   const [title, setTitle] = useState("");
-  const [img, setImage] = useState("");
+  const [img, setImage] = useState(
+    "https://res.cloudinary.com/drsff217k/image/upload/v1654599715/Pieces/rembrandt-selfportrait-1660_rohmpn.jpg"
+  );
 
   const navigate = useNavigate();
   const handleTitle = (e) => setTitle(e.target.value);

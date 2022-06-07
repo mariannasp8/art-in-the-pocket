@@ -9,7 +9,12 @@ const StyledDetailsPage = styled.body`
   width: 100wh;
   background-size: cover;
   background-position: center;
-
+  .all-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
   h1 {
     color: ${({ theme }) => theme.colors.black || "#000000"};
   }
@@ -26,14 +31,33 @@ const StyledDetailsPage = styled.body`
   p {
     color: ${({ theme }) => theme.colors.black || "#000000"};
   }
+  .piece-img {
+    border: 1px solid red;
+    height: 35vh;
+    width: 80vw;
+  }
+  .details-img {
+    border: 1px solid orange;
+    height: 10vh;
+    width: 80vw;
+  }
+  .text-img {
+    border: 1px solid blue;
+    height: 20vh;
+    width: 80vw;
+  }
 `;
 
 function DetailsPage() {
   return (
-    <StyledDetailsPage style={{ backgroundImage: `url(${base1})` }}>
-      <h1>Art in your Pocket</h1>
-      <div></div>
-    </StyledDetailsPage>
+    <div className="all-page">
+      <StyledDetailsPage style={{ backgroundImage: `url(${base1})` }}>
+        <h1>Art in your Pocket</h1>
+        <div className="piece-img"></div>
+        <div className="details-img"></div>
+        <div className="text-img"></div>
+      </StyledDetailsPage>
+    </div>
   );
 }
 

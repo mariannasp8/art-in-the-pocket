@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import turnerImg from "../assets/image-modules/william-turner-whalers-1845.jpg";
 import ingresImg from "../assets/image-modules/jean-dominique-ingres-josephine-eleonore-marie-paulina-1951-53.jpg";
 import rubensImg from "../assets/image-modules/peter-paul-rubens-rubens-helena-fourment-and-their-son-1635.jpg";
 import toilImg from "../assets/image-modules/francois-boucher-the-toilette-of-venus-1751.jpg";
+import PiecesCard from "../components/PiecesCard";
 
 const StyledSearchPage = styled.div`
   display: flex;
@@ -72,6 +73,29 @@ const StyledSearchPage = styled.div`
 `;
 
 function SearchPage() {
+  const [pieces, setPieces] = useState([]);
+  const getAllPieces = async () => {
+    const storedToken = localStorage.getItem("authToken");
+    try {
+      let response = await axios.get(
+        "http://localhost:5005/api/search-pieces",
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+      //console.log(response.data);
+      setPieces(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllPieces();
+  }, []);
+
   return (
     <StyledSearchPage>
       <div>
@@ -129,7 +153,12 @@ function SearchPage() {
           </div>
         </section>
       </div>
-      <div className="search-section"></div>
+      <div className="pieces-list">
+        {pieces &&
+          pieces.map((item) => {
+            return <PiecesCard item={item} />;
+          })}
+      </div>
     </StyledSearchPage>
   );
 }

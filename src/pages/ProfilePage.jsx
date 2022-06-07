@@ -59,6 +59,7 @@ const StyledProfile = styled.div`
   }
   .edit-pro {
     text-decoration: none;
+    padding-bottom: 14px;
   }
   .linkToLog {
     text-decoration: none;
@@ -75,6 +76,18 @@ const StyledProfile = styled.div`
     justify-content: flex-start;
     padding-top: 20px;
 
+  }
+  .logout-btn {
+    background-color: ${({ theme }) => theme.colors.black || "#000000"};
+    border-style: none;
+  color: ${({ theme }) => theme.colors.white || " #ffffff"};
+  width: 50px;
+  height: 30px;
+  margin: 1rem;
+  border-radius: 8px;
+  padding: 80px 20px 80px 20;
+  text-align: center;
+  font-size: 12px;
   }
 `;
 
@@ -158,8 +171,11 @@ function ProfilePage() {
               alt="add-icon"
             />{" "}
           </Link>
-
-          <button onClick={logoutUser}>Logout</button>
+          <div>
+            <button className="logout-btn" onClick={logoutUser}>
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     </StyledProfile>

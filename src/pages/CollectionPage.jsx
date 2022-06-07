@@ -105,6 +105,10 @@ const StyledCollection = styled.div`
   .paiting-name {
     font-size: 14px;
   }
+  .delete-icon img {
+    height: 20px;
+    width: 20px;
+  }
 `;
 
 function CollectionPage() {
@@ -148,31 +152,29 @@ function CollectionPage() {
     }
   };
 
+  const removePiece = async (pieceId, collectionId) => {
+    const storedToken = localStorage.getItem("authToken");
+
+    try {
+      const body = { pieceId, collectionId };
+      console.log(body);
+      await axios.put(
+        `http://localhost:5005/api/collection/delete-piece`,
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+      getCollections();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <StyledCollection>
-      {collections.length > 0 &&
-        collections.map((element) => {
-          return (
-            <>
-              {element.pieces.map((piece) => {
-                return (
-                  <>
-                    <img src={piece.img} alt="sol"></img>
-                    <h5>{piece.title}</h5>
-                    <p>{piece.date}</p>
-                  </>
-                );
-              })}
-              <img
-                onClick={() => deleteCollection(element._id)}
-                className="delete-icon"
-                src={deleteIcon}
-                alt="delete-icon"
-              />
-            </>
-          );
-        })}
-
       <div>
         <section className="profile-section">
           <h5 className="welcome">
@@ -217,15 +219,44 @@ function CollectionPage() {
               />
             </div>
           </div>
-          <div>
-            <h4>
-              My Collection <em>Portraits</em>
-            </h4>
-            <img
-              className="icons"
-              src="../assets/paintings/jean-dominique-ingres-josephine-eleonore-marie-paulina-1951-53.jpg"
-              alt="collection-icon"
-            />
+          <div className="eachCollection">
+            {collections.length > 0 &&
+              collections.map((element) => {
+                return (
+                  <>
+                    <h4>
+                      My Collection <em>{element.title}</em>
+                    </h4>
+                    {element.pieces.length > 0 ? (
+                      ""
+                    ) : (
+                      <img src={element.img} alt="img" />
+                    )}
+
+                    {element.pieces.map((piece) => {
+                      return (
+                        <>
+                          <img src={piece.img} alt="collectionImg"></img>
+                          <h5>{piece.title}</h5>
+                          <p>{piece.date}</p>
+                          <button
+                            onClick={() => removePiece(piece._id, element._id)}
+                          >
+                            Remove piece
+                          </button>
+                        </>
+                      );
+                    })}
+                    <div className="delete-icon">
+                      <img
+                        onClick={() => deleteCollection(element._id)}
+                        src={deleteIcon}
+                        alt="delete-icon"
+                      />
+                    </div>
+                  </>
+                );
+              })}
           </div>
         </section>
       </div>

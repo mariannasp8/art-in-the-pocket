@@ -6,6 +6,14 @@ const StyledSearchBar = styled.div`
   width: 20px;
   heigth: 60px;
   border-radius: 8px;
+
+  .inputBar {
+    ${({ theme }) => theme.colors.lightGrey || "#B9AFAC"};
+    border-radius: 8px;
+    ${"" /*  border: none; */}
+    background-color: hsla(0, 100%, 99%, 0.4);
+    padding: 5px 72px;
+  }
 `;
 
 function SearchBar({ placeholder, data }) {
@@ -13,7 +21,11 @@ function SearchBar({ placeholder, data }) {
     <StyledSearchBar>
       <div className="search">
         <div className="searchInp">
-          <input type="text" placeholder="Search for Artists ..."></input>
+          <input
+            className="inputBar"
+            type="text"
+            placeholder="Search for Artists ..."
+          ></input>
           <div className="searcIcon"></div>
           <div className="searchResult"></div>
         </div>

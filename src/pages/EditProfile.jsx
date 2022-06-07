@@ -79,6 +79,29 @@ function EditProfile() {
   const [img, setImg] = useState([]);
   const { userId } = useParams();
 
+  //cloudinary
+  const handleFileUpload = (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+    const getToken = localStorage.getItem("authToken");
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("img", e.target.files[0]);
+
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/auth/upload`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${getToken}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setImg(response.data.fileUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
+  };
+
   const getProfile = async () => {
     try {
       const getToken = localStorage.getItem("authToken");
@@ -104,7 +127,7 @@ function EditProfile() {
   const navigate = useNavigate();
   const handleUsername = (e) => setUsername(e.target.value);
   const handleName = (e) => setName(e.target.value);
-  const handleImg = (e) => setImg(e.target.value);
+  // const handleImg = (e) => setImg(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -149,6 +172,8 @@ function EditProfile() {
           <label htmlFor="name">Name: </label>
           <input type="text" name="name" value={name} onChange={handleName} />
 
+          <label htmlFor="img">Profile Picture</label>
+          <input type="file" name="img" onChange={handleFileUpload} />
           <button type="submit">Edit</button>
         </Form>
         <div>
