@@ -16,13 +16,12 @@ import FavoriteDetailsPage from "./pages/FavoriteDetailsPage";
 import NavbarBottom from "./components/NavbarBottom";
 import ErrorPage from "./pages/ErrorPage";
 import CollectionCreate from "./pages/CollectionCreate";
-
-
+import { Button } from "reactstrap";
 
 function App() {
   return (
     <div className="App">
-      <NavbarBottom className="navBar"/>
+      <NavbarBottom className="navBar" />
       <Routes>
         <Route path="/" element={<HomePage />} />
 

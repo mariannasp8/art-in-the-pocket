@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 /* import searchIcon from "../assets/icons/search.2.png"; */
 
@@ -16,7 +16,14 @@ const StyledSearchBar = styled.div`
   }
 `;
 
-function SearchBar({ placeholder, data }) {
+function SearchBar({ handleSearch }) {
+  const [search, setSearch] = useState("");
+
+  const handleInput = (e) => {
+    setSearch(e.target.value);
+    handleSearch(e.target.value);
+  };
+
   return (
     <StyledSearchBar>
       <div className="search">
@@ -25,6 +32,7 @@ function SearchBar({ placeholder, data }) {
             className="inputBar"
             type="text"
             placeholder="Search for Artists ..."
+            onChange={handleInput}
           ></input>
           <div className="searcIcon"></div>
           <div className="searchResult"></div>

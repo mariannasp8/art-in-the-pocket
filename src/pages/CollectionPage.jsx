@@ -12,6 +12,7 @@ import painting1 from "../assets/paintings/potato-joan-miro-1928.jpg";
 import painting2 from "../assets/paintings/joan-miro-contellation-toward-the-rainbow-1941.jpg";
 import deleteIcon from "../assets/icons/delete.2.png";
 import profileIcon from "../assets/icons/profile.2.png";
+/* import { Card, Carousel, Button } from "react-bootstrap"; */
 
 const StyledCollection = styled.div`
   display: flex;
@@ -237,8 +238,10 @@ function CollectionPage() {
                       return (
                         <>
                           <img src={piece.img} alt="collectionImg"></img>
+
                           <h5>{piece.title}</h5>
                           <p>{piece.date}</p>
+
                           <button
                             onClick={() => removePiece(piece._id, element._id)}
                           >

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import styled from "styled-components";
 import Avatar from "../components/Avatar";
@@ -30,6 +31,7 @@ const StyledSearchPage = styled.div`
     justify-content: space-between;
   }
   .welcome {
+    font-size: 16px;
     margin-left: 90px;
   }
   .p {
@@ -70,10 +72,34 @@ const StyledSearchPage = styled.div`
     heigth: 40hw;
     width: 80vw;
   }
+  .pieces-list {
+  }
 `;
 
 function SearchPage() {
   const [pieces, setPieces] = useState([]);
+  const [searchedPieces, setSearchedPieces] = useState([]);
+  const [userInfo, setUserInfo] = useState(null);
+
+  const { user } = useContext(AuthContext);
+
+  const getUser = async () => {
+    try {
+      const storedToken = localStorage.getItem("authToken");
+      let response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/auth/profile/${user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+      console.log(response.data);
+      setUserInfo(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const getAllPieces = async () => {
     const storedToken = localStorage.getItem("authToken");
     try {
@@ -85,14 +111,23 @@ function SearchPage() {
           },
         }
       );
-      //console.log(response.data);
+      console.log(response.data);
       setPieces(response.data);
+      setSearchedPieces(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleSearch = (search) => {
+    const filteredPieces = [...pieces].filter((piece) =>
+      piece.author.toLowerCase().includes(search.toLowerCase())
+    );
+    setSearchedPieces(filteredPieces);
+  };
+
   useEffect(() => {
+    getUser();
     getAllPieces();
   }, []);
 
@@ -112,7 +147,7 @@ function SearchPage() {
         <div className="searchDiv">
           <h4>Art in your Pocket</h4>
           <p>Do your search ...</p>
-          <SearchBar />
+          <SearchBar handleSearch={handleSearch} />
         </div>
         <section className="reservedSec">
           <div className="modules">
@@ -154,9 +189,10 @@ function SearchPage() {
         </section>
       </div>
       <div className="pieces-list">
-        {pieces &&
-          pieces.map((item) => {
-            return <PiecesCard item={item} />;
+        {searchedPieces &&
+          userInfo &&
+          searchedPieces.map((item) => {
+            return <PiecesCard item={item} user={userInfo} />;
           })}
       </div>
     </StyledSearchPage>

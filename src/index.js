@@ -8,6 +8,8 @@ import { AuthProviderWrapper } from "./context/auth.context";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/GlobalStyles";
 import FontStyles from "./styles/fontStyles";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const theme = {
   colors: {
