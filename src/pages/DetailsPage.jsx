@@ -1,5 +1,6 @@
-import React from "react";
-/* import axios from "axios"; */
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 import base1 from "../assets/images/base-01.jpg";
 /* import base2 from "../assets/images/base-02.jpg"; */
@@ -49,6 +50,31 @@ const StyledDetailsPage = styled.body`
 `;
 
 function DetailsPage() {
+  const [pieces, setPieces] = useState({});
+  const { pieceId } = useParams();
+
+  const getDetailsPiece = async () => {
+    const storedToken = localStorage.getItem("authToken");
+    try {
+      let response = await axios.get(
+        `http://localhost:5005/api/details/${pieceId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+      //console.log(response.data);
+      setPieces(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getDetailsPiece();
+  }, []);
+
   return (
     <div className="all-page">
       <StyledDetailsPage style={{ backgroundImage: `url(${base1})` }}>

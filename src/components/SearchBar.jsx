@@ -13,9 +13,9 @@ const StyledSearchBar = styled.div`
     background-color: rgba(200, 200, 200, 0.5);
     border-radius: 8px;
     border: none;
-
-    padding: 4px 72px;
+    padding: 5px 72px;
     font-size: 12px;
+    text-align: left;
   }
 `;
 

@@ -39,12 +39,14 @@ const StyledSearchPage = styled.div`
     font-size: 12px;
   }
   .search-p {
+    padding-top: 5px;
     font-size: 14px;
     margin-bottom: -1px;
   }
   .searchDiv {
     heigth: 40hw;
     width: 80vw;
+    padding: 20px 15px;
     ${"" /* border: 1px solid red; */}
     display: flex;
     flex-direction: column;
@@ -54,7 +56,8 @@ const StyledSearchPage = styled.div`
   .reservedSec {
     heigth: 40hw;
     width: 80vw;
-   ${'' /*  border: 1px solid orange; */}
+    padding-bottom: 25px;
+   ${"" /*  border: 1px solid orange; */}
     display: flex;
     flex-direction: row;
     align-items: flex-start;

@@ -70,7 +70,7 @@ function App() {
         />
 
         <Route
-          path="/details"
+          path="/details/:pieceId"
           element={
             <IsPrivate>
               <DetailsPage />
@@ -96,7 +96,7 @@ function App() {
         />
 
         <Route
-          path="/collection-details"
+          path="/collection-details/:id"
           element={
             <IsPrivate>
               <CollectionDetailsPage />
@@ -114,7 +114,7 @@ function App() {
         />
 
         <Route
-          path="/favorite-details"
+          path="/favorite-details/"
           element={
             <IsPrivate>
               <FavoriteDetailsPage />

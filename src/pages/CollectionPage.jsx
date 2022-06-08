@@ -18,10 +18,13 @@ const StyledCollection = styled.div`
   display: flex;
   flex-flow: column wrap;
   font-size: 1rem;
+  margin-top: 60px;
+  margin-bottom: 90px;
   .profile-section {
+    margin-top: 10px;
     heigth: 50hw;
     width: 80vw;
-    border: 1px solid green;
+    ${"" /* order: 1px solid green; */}
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -35,7 +38,8 @@ const StyledCollection = styled.div`
     font-size: 12px;
   }
   .main-section {
-    border: 1px solid blue;
+    margin-top: 20px;
+    ${"" /*  border: 1px solid blue; */}
     height: 100hw;
     width: 80vw;
     display: flex;
@@ -43,6 +47,13 @@ const StyledCollection = styled.div`
     align-items: flex-start;
     align-content: flex-start;
     justify-content: flex-start;
+  }
+  .titleCollection {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    gap: 0.7rem;
   }
   .collection1 {
     padding-top: 60px;
@@ -57,42 +68,46 @@ const StyledCollection = styled.div`
     gap: 1rem;
     margin: 0;
   }
-  .firstCollection {
-    height: 60hw;
-    width: 36vw;
-    border: 1px solid orange;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    align-content: flex-start;
-    justify-content: flex-start;
-  }
   .eachCollection {
+    ${"" /*  border: 1px solid yellow; */}
+    height: 100px;
+    width: 240px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    align-content: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+  .detailsCollection {
+    ${"" /*  border: 1px solid red; */}
+    height: 30px;
+    width: 240px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2rem;
   }
   .img-text {
     heigth: 10hw;
     width: 35vw;
-    border: 1px solid black;
+    ${"" /*  border: 1px solid black; */}
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
+  #eachImg {
+    border-radius: 24px;
+  }
   .icons {
     height: 1.2rem;
   }
-  .paiting1 {
-  }
+
   h5 {
-    font-size: 14px;
+    font-size: 18px;
   }
   h4 {
-    font-size: 16px;
+    font-size: 18px;
   }
   h3 {
     font-size: 26px;
@@ -101,16 +116,32 @@ const StyledCollection = styled.div`
     font-size: 12px;
   }
   p {
-    font-size: 10px;
+    font-size: 12px;
+  }
+  h4 > b {
+    font-size: 12px;
   }
   .paiting-name {
     font-size: 14px;
   }
+  #col-name {
+    font-size: 16px;
+  }
   .delete-icon img {
+    ${"" /*  border: 1px solid white; */}
     height: 20px;
     width: 20px;
+    margin-left: 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    gap: 2rem;
   }
   .removePiece-btn {
+    margin-left: -240px;
+    margin-bottom: 20px;
     height: 30px;
     width: 60px;
     font-size: 9px;
@@ -119,6 +150,21 @@ const StyledCollection = styled.div`
     color: ${({ theme }) => theme.colors.white || " #ffffff"};
     border-radius: 8px;
     padding: 80px 20px 80px 20;
+  }
+  #details-btn {
+    margin-top: 10px;
+    margin-left: 130px;
+    height: 25px;
+    width: 55px;
+    font-size: 9px;
+    background-color: ${({ theme }) => theme.colors.black || "#000000"};
+    border-style: none;
+    border-radius: 8px;
+    padding: 80px 20px 80px 20;
+  }
+  .stylink {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
   }
 `;
 
@@ -203,77 +249,78 @@ function CollectionPage() {
             Art in your pocket{" "}
             <img className="icons" src={collectionIcon} alt="collection-icon" />
           </h3>
-          {/*        <div className="collection1">
-            <h4>
-              My Collection <em>Joan Mirò</em>
-            </h4>
-            <div className="firstCollection">
-              <div className="eachCollection">
-                <img
-                  className="painting1"
-                  src={painting1}
-                  width="140px"
-                  alt="collection paiting 1"
-                />
-                <div className="img-text">
-                  <h5 className="paintor-name">Joan Mirò</h5>
-                  <p>1928</p>
-                </div>
-
-                <p className="paiting-name">Potato</p>
-              </div>
-
-              <img
-                className="painting2"
-                src={painting2}
-                width="140px"
-                alt="collection paiting 2"
-              />
-            </div>
-          </div> */}
-          <div className="allCollections">
-            {collections.length > 0 &&
-              collections.map((element) => {
-                return (
-                  <div className="eachCollection">
-                    {element.pieces.map((piece) => {
-                      return (
-                        <div className="piece-container">
-                          {/* <Carousel>
-                            <Carousel.Item> 
-
-                  
-                          <img src={piece.img} alt="collectionImg"></img>
-                          {/*  </Carousel.Item>
-                            <Carousel.Caption> */}
-                          <h5>{piece.title}</h5>
-                          <p>{piece.date}</p>
-
-                          <div className="delete-icon">
+          {collections.length > 0 &&
+            collections.map((collec) => {
+              return (
+                <div key={collec.id}>
+                  <h4 className="titleCollection">
+                    <b id="col-name">My Collection </b>
+                    <em>{collec.title}</em>
+                  </h4>
+                  <Carousel>
+                    {collec.pieces.length === 0 && (
+                      <Carousel.Item>
+                        <img
+                          className="d-block w-100"
+                          src={collec.img}
+                          alt="First slide"
+                        />
+                        <Carousel.Caption>
+                          <h5>New Collection</h5>
+                          <p>Go and insert your art pieces</p>
+                        </Carousel.Caption>
+                      </Carousel.Item>
+                    )}
+                    {collec.pieces.length > 0 &&
+                      collec.pieces.map((piece) => {
+                        return (
+                          <Carousel.Item>
                             <img
-                              onClick={() =>
-                                removePiece(piece._id, element._id)
-                              }
-                              src={deleteIcon}
-                              alt="delete-icon"
+                              id="eachImg"
+                              className="d-block w-100"
+                              src={piece.img}
+                              alt="First slide"
                             />
-                          </div>
+                            <Carousel.Caption>
+                              <div className="eachCollection">
+                                <h5>{piece.title}</h5>
+                                <p>{piece.author}</p>
+                                <div className="detailsCollection">
+                                  <p>{piece.date}</p>
 
-                          {/*   </Carousel.Caption>
-                          </Carousel> */}
-                        </div>
-                      );
-                    })}
-                    <button
-                      className="removePiece-btn"
-                      onClick={() => deleteCollection(element._id)}
-                    >
-                      Delete Collection
-                    </button>
-                  </div>
-                );
-              })}
-          </div>
+                                  <div className="delete-icon">
+                                    <img
+                                      onClick={() =>
+                                        removePiece(piece._id, collec._id)
+                                      }
+                                      src={deleteIcon}
+                                      alt="delete-icon"
+                                    />
+                                    <button id="details-btn">
+                                      <Link
+                                        className="stylink"
+                                        to={`/details/${piece._id}`}
+                                      >
+                                        Details
+                                      </Link>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </Carousel.Caption>
+                          </Carousel.Item>
+                        );
+                      })}
+                  </Carousel>
+                  <button
+                    className="removePiece-btn"
+                    onClick={() => deleteCollection(collec._id)}
+                  >
+                    Delete Collection
+                  </button>
+                </div>
+              );
+            })}
         </section>
       </div>
       <NavbarBottom />
@@ -283,20 +330,55 @@ function CollectionPage() {
 
 export default CollectionPage;
 
-/*  <div className="mainHome container">
-<StyledPieaceCard>
-  <Carousel>
-    <Carousel.Item>
-      <img src={item.img} alt="pieces" width="200px" />
-    </Carousel.Item>
-    <CarouselCaption>
-      <button className="add-col-btn" onClick={addToCollection}>
-        Add to Collection
-      </button>
-      <button className="add-fav-btn" onClick={addToFavorites}>
-        Add to Favorites
-      </button>
-    </CarouselCaption>
-  </Carousel>
-</StyledPieaceCard>
-</div>  */
+{
+  /* <div className="allCollections">
+            {collections.length > 0 &&
+              collections.map((element) => {
+                return (
+                  <div className="eachCollection">
+                    <Carousel>
+                      {element.pieces.map((piece) => {
+                        return (
+                          <div className="piece-container">
+                            <Carousel.Item>
+                              <img
+                                className="d-block w-100"
+                                src={piece.img}
+                                alt="collectionImg"
+                              ></img>
+
+                              <Carousel.Caption>
+                                <div className="imgText">
+                                  <h5>{piece.title}</h5>
+                                  <p>{piece.author}</p>
+                                   <div>
+                                    <p>{piece.date}</p>
+                                  </div> 
+                                </div>
+                                <div className="delete-icon">
+                                  <img
+                                    onClick={() =>
+                                      removePiece(piece._id, element._id)
+                                    }
+                                    src={deleteIcon}
+                                    alt="delete-icon"
+                                  />
+                                </div>
+                              </Carousel.Caption>
+                            </Carousel.Item>
+                          </div>
+                        );
+                      })}
+                    </Carousel>
+                    <button
+                      className="removePiece-btn"
+                      onClick={() => deleteCollection(element._id)}
+                    >
+                      Delete Collection
+                    </button>
+                  </div>
+                );
+              })}
+          </div> 
+        */
+}

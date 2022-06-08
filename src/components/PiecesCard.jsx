@@ -2,6 +2,8 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useState } from "react";
 import styled from "styled-components";
+import heartIcon from "../assets/icons/heart.2.png";
+import collectionIcon from "../assets/icons/collection.2.png";
 import { Card, Carousel, Button } from "react-bootstrap";
 import { CarouselCaption } from "reactstrap";
 
@@ -50,6 +52,9 @@ const StyledPieaceCard = styled.div`
     position: absolute;
     top: 50%;
     left: 40%;
+  }
+  .image {
+    border-radius: 25px;
   }
 `;
 
@@ -111,7 +116,7 @@ function PiecesCard({ item, user }) {
     <div>
       <StyledPieaceCard>
         <div id="img-group">
-          <img src={item.img} alt="pieces" width="200px" />
+          <img className="image" src={item.img} alt="pieces" width="200px" />
           {showModal && (
             <div id="modal">
               <select name="collection" id="collection" onChange={handleSelect}>
@@ -138,4 +143,3 @@ function PiecesCard({ item, user }) {
 }
 
 export default PiecesCard;
-

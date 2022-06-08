@@ -13,10 +13,11 @@ const StyledProfile = styled.div`
   flex-flow: column wrap;
   font-size: 1rem;
   border: 1px solid purple;
-  height: 750px;
+  height: 820px;
+ 
   
   .section1 {
-    padding: 1rem;
+        padding: 1rem;
     heigth: 40hw;
     width: 70vw;
     display: flex;
@@ -30,7 +31,7 @@ const StyledProfile = styled.div`
   .section2 {
     
     padding: 20px 0;
-    border: 1px solid blue;
+    ${"" /* border: 1px solid blue; */}
     height: 30hw;
     width: 70vw;
     display: flex;
@@ -86,7 +87,7 @@ const StyledProfile = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding-top: 20px;
+    padding-top: 35px;
 
   }
   .logout-btn {
@@ -95,7 +96,7 @@ const StyledProfile = styled.div`
   color: ${({ theme }) => theme.colors.white || " #ffffff"};
   width: 50px;
   height: 30px;
-  margin: 1rem;
+  margin: 0.5rem;
   border-radius: 8px;
   padding: 80px 20px 80px 20;
   text-align: center;

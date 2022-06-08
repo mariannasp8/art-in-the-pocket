@@ -92,7 +92,7 @@ function CollectionCreate() {
             onChange={handleTitle}
           />
 
-          <label htmlFor="iamge">Image</label>
+          <label htmlFor="image">Image</label>
           <input type="url" name="image" value={img} onChange={handleImage} />
 
           <button type="submit">Create</button>
