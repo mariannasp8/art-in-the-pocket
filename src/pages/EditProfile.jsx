@@ -25,6 +25,12 @@ const StyledEditProfile = styled.body`
     text-decoration: none;
     color: ${({ theme }) => theme.colors.black || "#000000"};
   }
+  #myForm {
+    width: 300px;
+  }
+  .formIn {
+    width: 250px;
+  }
 `;
 
 const Form = styled.form`
@@ -36,7 +42,7 @@ const Form = styled.form`
   background-color: hsla(0, 100%, 99%, 0.4);
 
   input {
-    ${({ theme }) => theme.colors.lightGrey || "#B9AFAC"};
+    color: grey;
     padding: 12px 10px;
     margin: 12px;
     border-radius: 12px;
@@ -160,9 +166,10 @@ function EditProfile() {
       <StyledEditProfile style={{ backgroundImage: `url(${editProImg})` }}>
         <h1>Art in your Pocket</h1>
         <h3>Edit your Profile</h3>
-        <Form onSubmit={handleSubmit}>
+        <Form id="myForm" onSubmit={handleSubmit}>
           <label htmlFor="username">Username: </label>
           <input
+            className="formIn"
             type="text"
             name="username"
             value={username}
@@ -170,23 +177,23 @@ function EditProfile() {
           />
 
           <label htmlFor="name">Name: </label>
-          <input type="text" name="name" value={name} onChange={handleName} />
+          <input
+            className="formIn"
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleName}
+          />
 
           <label htmlFor="img">Profile Picture</label>
-          <input type="file" name="img" onChange={handleFileUpload} />
+          <input
+            className="formIn"
+            type="file"
+            name="img"
+            onChange={handleFileUpload}
+          />
           <button type="submit">Edit</button>
         </Form>
-        <div>
-          <Link to="/profile" className="GoBack">
-            My Profile
-            <img
-              className="profileIcon"
-              src={profileIcon}
-              width="32px"
-              alt="profile-icon"
-            />
-          </Link>
-        </div>
       </StyledEditProfile>
     </div>
   );

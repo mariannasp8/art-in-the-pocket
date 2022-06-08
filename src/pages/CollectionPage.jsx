@@ -12,7 +12,7 @@ import painting1 from "../assets/paintings/potato-joan-miro-1928.jpg";
 import painting2 from "../assets/paintings/joan-miro-contellation-toward-the-rainbow-1941.jpg";
 import deleteIcon from "../assets/icons/delete.2.png";
 import profileIcon from "../assets/icons/profile.2.png";
-/* import { Card, Carousel, Button } from "react-bootstrap"; */
+import { Card, Carousel, Button } from "react-bootstrap";
 
 const StyledCollection = styled.div`
   display: flex;
@@ -110,6 +110,16 @@ const StyledCollection = styled.div`
     height: 20px;
     width: 20px;
   }
+  .removePiece-btn {
+    height: 30px;
+    width: 60px;
+    font-size: 9px;
+    background-color: ${({ theme }) => theme.colors.black || "#000000"};
+    border-style: none;
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
+    border-radius: 8px;
+    padding: 80px 20px 80px 20;
+  }
 `;
 
 function CollectionPage() {
@@ -159,7 +169,7 @@ function CollectionPage() {
     try {
       const body = { pieceId, collectionId };
       console.log(body);
-      await axios.put(
+      let response = await axios.put(
         `http://localhost:5005/api/collection/delete-piece`,
         body,
         {
@@ -169,6 +179,7 @@ function CollectionPage() {
         }
       );
       getCollections();
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -192,7 +203,7 @@ function CollectionPage() {
             Art in your pocket{" "}
             <img className="icons" src={collectionIcon} alt="collection-icon" />
           </h3>
-          <div className="collection1">
+          {/*        <div className="collection1">
             <h4>
               My Collection <em>Joan Mirò</em>
             </h4>
@@ -219,45 +230,47 @@ function CollectionPage() {
                 alt="collection paiting 2"
               />
             </div>
-          </div>
-          <div className="eachCollection">
+          </div> */}
+          <div className="allCollections">
             {collections.length > 0 &&
               collections.map((element) => {
                 return (
-                  <>
-                    <h4>
-                      My Collection <em>{element.title}</em>
-                    </h4>
-                    {element.pieces.length > 0 ? (
-                      ""
-                    ) : (
-                      <img src={element.img} alt="img" />
-                    )}
-
+                  <div className="eachCollection">
                     {element.pieces.map((piece) => {
                       return (
-                        <>
-                          <img src={piece.img} alt="collectionImg"></img>
+                        <div className="piece-container">
+                          {/* <Carousel>
+                            <Carousel.Item> 
 
+                  
+                          <img src={piece.img} alt="collectionImg"></img>
+                          {/*  </Carousel.Item>
+                            <Carousel.Caption> */}
                           <h5>{piece.title}</h5>
                           <p>{piece.date}</p>
 
-                          <button
-                            onClick={() => removePiece(piece._id, element._id)}
-                          >
-                            Remove piece
-                          </button>
-                        </>
+                          <div className="delete-icon">
+                            <img
+                              onClick={() =>
+                                removePiece(piece._id, element._id)
+                              }
+                              src={deleteIcon}
+                              alt="delete-icon"
+                            />
+                          </div>
+
+                          {/*   </Carousel.Caption>
+                          </Carousel> */}
+                        </div>
                       );
                     })}
-                    <div className="delete-icon">
-                      <img
-                        onClick={() => deleteCollection(element._id)}
-                        src={deleteIcon}
-                        alt="delete-icon"
-                      />
-                    </div>
-                  </>
+                    <button
+                      className="removePiece-btn"
+                      onClick={() => deleteCollection(element._id)}
+                    >
+                      Delete Collection
+                    </button>
+                  </div>
                 );
               })}
           </div>
@@ -269,3 +282,21 @@ function CollectionPage() {
 }
 
 export default CollectionPage;
+
+/*  <div className="mainHome container">
+<StyledPieaceCard>
+  <Carousel>
+    <Carousel.Item>
+      <img src={item.img} alt="pieces" width="200px" />
+    </Carousel.Item>
+    <CarouselCaption>
+      <button className="add-col-btn" onClick={addToCollection}>
+        Add to Collection
+      </button>
+      <button className="add-fav-btn" onClick={addToFavorites}>
+        Add to Favorites
+      </button>
+    </CarouselCaption>
+  </Carousel>
+</StyledPieaceCard>
+</div>  */

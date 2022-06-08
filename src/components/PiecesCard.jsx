@@ -55,10 +55,36 @@ const StyledPieaceCard = styled.div`
 
 function PiecesCard({ item, user }) {
   const [showModal, setShowModal] = useState(false);
+  const [selectedCollection, setSelectedCollection] = useState(
+    user.collections[0]._id
+  );
 
-  const addToCollection = async () => {
+  const addToCollection = async (collectionId, pieceId) => {
+    console.log(collectionId);
     try {
-    } catch {}
+      const storedToken = localStorage.getItem("authToken");
+      let response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/collection/add-piece`,
+        { collectionId, pieceId },
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleButton = () => {
+    if (!showModal) {
+      setShowModal(true);
+    } else {
+      addToCollection(selectedCollection, item._id);
+      setShowModal(false);
+    }
   };
 
   const addToFavorites = async () => {
@@ -79,6 +105,8 @@ function PiecesCard({ item, user }) {
     }
   };
 
+  const handleSelect = (e) => setSelectedCollection(e.target.value);
+
   return (
     <div>
       <StyledPieaceCard>
@@ -86,7 +114,7 @@ function PiecesCard({ item, user }) {
           <img src={item.img} alt="pieces" width="200px" />
           {showModal && (
             <div id="modal">
-              <select name="collection" id="collection">
+              <select name="collection" id="collection" onChange={handleSelect}>
                 {user &&
                   user.collections.map((collection) => (
                     <option value={collection._id}>{collection.title}</option>
@@ -97,10 +125,7 @@ function PiecesCard({ item, user }) {
         </div>
 
         <div className="btn-group">
-          <button
-            className="add-col-btn"
-            onClick={() => setShowModal(!showModal)}
-          >
+          <button className="add-col-btn" onClick={handleButton}>
             Add to Collection
           </button>
           <button className="add-fav-btn" onClick={addToFavorites}>
@@ -114,22 +139,3 @@ function PiecesCard({ item, user }) {
 
 export default PiecesCard;
 
-{
-  /* <div className="mainHome container">
-<StyledPieaceCard>
-  <Carousel>
-    <Carousel.Item>
-      <img src={item.img} alt="pieces" width="200px" />
-    </Carousel.Item>
-    <CarouselCaption>
-      <button className="add-col-btn" onClick={addToCollection}>
-        Add to Collection
-      </button>
-      <button className="add-fav-btn" onClick={addToFavorites}>
-        Add to Favorites
-      </button>
-    </CarouselCaption>
-  </Carousel>
-</StyledPieaceCard>
-</div> */
-}

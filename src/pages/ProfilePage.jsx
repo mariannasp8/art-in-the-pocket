@@ -12,14 +12,24 @@ const StyledProfile = styled.div`
   display: flex;
   flex-flow: column wrap;
   font-size: 1rem;
+  border: 1px solid purple;
+  height: 750px;
+  
   .section1 {
-    heigth: 50hw;
+    padding: 1rem;
+    heigth: 40hw;
     width: 70vw;
-    border: 1px solid green;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+   ${"" /*  border: 1px solid green; */}
     
   }
 
   .section2 {
+    
+    padding: 20px 0;
     border: 1px solid blue;
     height: 30hw;
     width: 70vw;
@@ -30,7 +40,7 @@ const StyledProfile = styled.div`
     justify-content: flex-start;
   }
   .option-box {
-    
+    margin-top: 40px;
     padding-top: 20px;
     border: 1px solid red;
     height: 40hw;
@@ -55,16 +65,18 @@ const StyledProfile = styled.div`
     font-size:16px
   }
   h3{
-    font-size:20px
+    font-size:20px;
+    padding-top:20px;
   }
+  
   .edit-pro {
     text-decoration: none;
     padding-bottom: 14px;
   }
-  .linkToLog {
+  a {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.black || "#000000"};
-    font-size: 14px
+    font-size: 16px
   }
   b {
     color: ${({ theme }) => theme.colors.black || "#000000"};
@@ -123,53 +135,51 @@ function ProfilePage() {
     <StyledProfile>
       <div>
         <section className="section1">
-          <div>
-            <Avatar
-              image={loggedUser.img}
-              width="180px"
-              alt="defaul profile picture"
-            />
-            {/* <img src={user.img} alt="profile-picture" className="profile-pic" /> */}
-            {/*  <h5> {loggedUser.name} </h5> */}
-          </div>
+          <Avatar
+            image={loggedUser.img}
+            width="170px"
+            alt="defaul profile picture"
+          />
           <h3>
-            <b>{loggedUser && loggedUser.username}</b>
+            <b className="nameOf">{loggedUser && loggedUser.username}</b>
           </h3>
         </section>
         {loggedUser && (
           <section className="section2">
-            <h5>Name: {loggedUser.name}</h5>
-            <h5>Username: {loggedUser.username}</h5>
-            <h5>Email: {loggedUser.email}</h5>
+            <h5>
+              {" "}
+              <b>Name: </b>
+              {loggedUser.name}
+            </h5>
+            <h5>
+              <b>Username: </b> {loggedUser.username}
+            </h5>
+            <h5>
+              <b>Email :</b> {loggedUser.email}
+            </h5>
             {/* <  handlePicture={handlePicture} /> */}
           </section>
         )}
 
         <div className="option-box">
           <Link to="/collection" className="text-option-box">
-            My Collection
+            <b>My Collection</b>
             <img className="icons" src={collectionIcon} alt="collection-icon" />
           </Link>
           <Link to="/collection-create" className="text-option-box">
-            {" "}
-            Create Collection{" "}
+            <b>Create Collection</b>
             <img className="icons" src={addIcon} alt="heart-icon" />{" "}
           </Link>
           <Link to="/favorite" className="text-option-box">
-            {" "}
-            My Favorites{" "}
+            <b>My Favorites</b>
             <img className="icons" src={heartIcon} alt="heart-icon" />{" "}
           </Link>
           {/* <Link to="/friends"> My Friends</Link> */}
         </div>
         <div className="last-box">
           <Link className="edit-pro" to={`/edit-profile/${user._id}`}>
-            {" "}
-            Edit Profile <img
-              className="icons"
-              src={addIcon}
-              alt="add-icon"
-            />{" "}
+            <b>Edit Profile</b>{" "}
+            <img className="icons" src={addIcon} alt="add-icon" />
           </Link>
           <div>
             <button className="logout-btn" onClick={logoutUser}>

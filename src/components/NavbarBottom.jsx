@@ -27,6 +27,7 @@ const StyledNavBottom = styled.nav`
   position: fixed;
   margin-top: 745px;
   border-radius: 24px 24px 24px 24px;
+  z-index: 99;
 `;
 
 const SelectedIcon = styled.div`

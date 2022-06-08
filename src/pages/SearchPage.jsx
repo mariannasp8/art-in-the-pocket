@@ -13,17 +13,18 @@ import toilImg from "../assets/image-modules/francois-boucher-the-toilette-of-ve
 import PiecesCard from "../components/PiecesCard";
 
 const StyledSearchPage = styled.div`
+  margin-top: 70px;
   display: flex;
   flex-flow: column wrap;
   font-size: 1rem;
 
   h4 {
-    font-size: 20px;
+    font-size: 25px;
   }
   .profile-section {
     heigth: 50hw;
     width: 80vw;
-    border: 1px solid green;
+    ${"" /*  border: 1px solid green; */}
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -37,10 +38,14 @@ const StyledSearchPage = styled.div`
   .p {
     font-size: 12px;
   }
+  .search-p {
+    font-size: 14px;
+    margin-bottom: -1px;
+  }
   .searchDiv {
     heigth: 40hw;
     width: 80vw;
-    border: 1px solid red;
+    ${"" /* border: 1px solid red; */}
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -49,16 +54,18 @@ const StyledSearchPage = styled.div`
   .reservedSec {
     heigth: 40hw;
     width: 80vw;
-    border: 1px solid orange;
+   ${'' /*  border: 1px solid orange; */}
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     align-content: center;
   }
   .modules {
+    padding-top: 20px;
+    padding-bottom: 20px
     heigth: 20hw;
     width: 80vw;
-    border: 1px solid green;
+    ${"" /* border: 1px solid green; */}
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,8 +152,10 @@ function SearchPage() {
           />
         </section>
         <div className="searchDiv">
-          <h4>Art in your Pocket</h4>
-          <p>Do your search ...</p>
+          <h4>
+            <b>Art in your Pocket</b>
+          </h4>
+          <p className="search-p">Do your search ...</p>
           <SearchBar handleSearch={handleSearch} />
         </div>
         <section className="reservedSec">
