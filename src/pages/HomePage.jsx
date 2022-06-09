@@ -32,6 +32,7 @@ const StyledHomePage = styled.div`
     font-size: 40px;
     padding-top: 180px;
     padding-bottom: 20px;
+    color: ${({ theme }) => theme.colors.black || "#000000"};
   }
   h5 {
     font-size: 40px;
@@ -40,6 +41,7 @@ const StyledHomePage = styled.div`
   p {
     font-size: 16px;
     padding-top: 60px;
+    color: ${({ theme }) => theme.colors.black || "#000000"};
   }
   .link {
     text-decoration: none;

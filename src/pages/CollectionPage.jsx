@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -10,8 +10,7 @@ import NavbarBottom from "../components/NavbarBottom";
 import deleteIcon from "../assets/icons/delete.2.png";
 import profileIcon from "../assets/icons/profile.2.png";
 import { Carousel } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../context/auth.context";
 
 const StyledCollection = styled.div`
   display: flex;
@@ -185,6 +184,7 @@ const StyledCollection = styled.div`
 
 function CollectionPage() {
   const [collections, setCollections] = useState([]);
+  const { user } = useContext(AuthContext);
 
   const getCollections = async () => {
     const storedToken = localStorage.getItem("authToken");
@@ -246,23 +246,12 @@ function CollectionPage() {
     }
   };
 
-  /*   function App(){
-    const notify = () => toast("Wow so easy!");
-
-    return (
-      <div>
-        <button onClick={notify}>Notify!</button>
-        <ToastContainer />
-      </div>
-    );
-  } */
-
   return (
     <StyledCollection>
       <div>
         <section className="profile-section">
           <h5 className="welcome">
-            Welcome <b>Vincent</b>
+            Welcome <b>{user.username}</b>
           </h5>
           <Avatar
             image={ProfilePicture}

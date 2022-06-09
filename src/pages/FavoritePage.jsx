@@ -53,6 +53,8 @@ const StyledFavorites = styled.div`
   }
   h4 {
     font-size: 18px;
+    display: flex;
+    justify-content: flex-start;
   }
   #eachImg1 {
     border-radius: 24px;
@@ -61,9 +63,14 @@ const StyledFavorites = styled.div`
     border: 1px solid red;
     display: flex;
   }
+  #fav-name {
+    font-size: 16px;
+    margin-top: 10px;
+  }
   .main-section {
-    margin-top: 20px;
-    ${"" /* border: 1px solid blue; */}
+    margin-top: 12px;
+    paddint-bottom: 10px;
+    ${"" /*  border: 1px solid blue; */}
     height: 100hw;
     width: 80vw;
     display: flex;
@@ -75,7 +82,7 @@ const StyledFavorites = styled.div`
   }
 
   .carousel {
-    margin-top: 50px;
+    margin-top: 30px;
     width: 80vw;
     height: auto;
   }
@@ -129,12 +136,12 @@ function FavoritePage() {
     getFavorites();
   }, []);
 
-  const removePieceFromFavorite = async () => {
+  const removePieceFromFavorite = async (pieceid) => {
     const storedToken = localStorage.getItem("authToken");
 
     try {
-      let response = await axios.put(
-        `http://localhost:5005/api/favorites/delete-piece/${user._id}`,
+      let response = await axios.delete(
+        `http://localhost:5005/api/favorites/delete-piece/${pieceid}`,
 
         {
           headers: {
@@ -142,8 +149,8 @@ function FavoritePage() {
           },
         }
       );
-      removePieceFromFavorite();
-      console.log(response);
+
+      getFavorites();
     } catch (error) {
       console.log(error);
     }
@@ -154,7 +161,7 @@ function FavoritePage() {
       <div>
         <section className="profile-section">
           <h5 className="welcome">
-            Welcome <b>Vincent</b>
+            Welcome <b>{user.username}</b>
           </h5>
           <Avatar
             image={ProfilePicture}
@@ -170,6 +177,9 @@ function FavoritePage() {
         </section>
 
         <div className="pieces-list">
+          <h4>
+            <b id="fav-name">My Favorites</b>
+          </h4>
           <Carousel className="carousel">
             {favorites &&
               favorites.map((item) => {
@@ -186,6 +196,12 @@ function FavoritePage() {
                       <Carousel.Caption>
                         <h5>{item.title}</h5>
                         <p>{item.author}</p>
+                        <img
+                          className="remove-img-btn"
+                          onClick={() => removePieceFromFavorite(item._id)}
+                          src={deleteIcon}
+                          alt="delete-icon"
+                        />
                       </Carousel.Caption>
                     </div>
                   </Carousel.Item>
@@ -193,12 +209,6 @@ function FavoritePage() {
               })}
           </Carousel>
         </div>
-        <img
-          className="remove-img-btn"
-          onClick={removePieceFromFavorite}
-          src={deleteIcon}
-          alt="delete-icon"
-        />
       </div>
     </StyledFavorites>
   );

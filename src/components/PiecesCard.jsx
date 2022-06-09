@@ -6,6 +6,8 @@ import heartIcon from "../assets/icons/heart.2.png";
 import collectionIcon from "../assets/icons/collection.2.png";
 import { Card, Carousel, Button } from "react-bootstrap";
 import { CarouselCaption } from "reactstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StyledPieaceCard = styled.div`
   position: relative;
@@ -23,11 +25,12 @@ const StyledPieaceCard = styled.div`
     width: 26px;
   }
   .btn-group {
-    border: 1px solid red;
-    width: 100%;
+    ${"" /* border: 1px solid red; */}
+    width: 80%;
     display: flex;
     justify-content: space-around;
-    padding: 30px;
+    margin-top: 10px;
+    padding-bottom: 30px;
   }
   #modal {
     position: absolute;
@@ -93,6 +96,15 @@ function PiecesCard({ item, user }) {
           },
         }
       );
+      toast.success("Add to Favorites!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       console.log(response.data);
     } catch (err) {
       console.log(err);
@@ -104,6 +116,7 @@ function PiecesCard({ item, user }) {
   return (
     <div>
       <StyledPieaceCard>
+        <ToastContainer />
         <div id="img-group">
           <img className="image" src={item.img} alt="pieces" width="250px" />
           {showModal && (

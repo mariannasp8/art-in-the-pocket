@@ -146,7 +146,7 @@ function SearchPage() {
       <div>
         <section className="profile-section">
           <h5 className="welcome">
-            Welcome <b>Vincent</b>
+            Welcome <b>{user.username}</b>
           </h5>
           <Avatar
             image={ProfilePicture}

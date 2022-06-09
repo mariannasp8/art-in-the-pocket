@@ -9,6 +9,7 @@ const StyledErrorPage = styled.div`
     width: 100vw;
     background-size: cover;
     backgroung-position: center;
+    
   }
   h1 {
     color: ${({ theme }) => theme.colors.black || "#000000"};
