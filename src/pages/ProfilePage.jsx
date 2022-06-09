@@ -24,13 +24,14 @@ const StyledProfile = styled.div`
     flex-direction:column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
+    padding-top: 50px;
    ${"" /*  border: 1px solid green; */}
     
   }
 
   .section2 {
-    
-    padding: 20px 0;
+        padding: 20px 0;
     ${"" /* border: 1px solid blue; */}
     height: 30hw;
     width: 70vw;
@@ -39,11 +40,12 @@ const StyledProfile = styled.div`
     align-items: flex-start;
     align-content: flex-start;
     justify-content: flex-start;
+    gap: 1rem;
   }
   .option-box {
     margin-top: 40px;
-    padding-top: 20px;
-    border: 1px solid red;
+    padding-top: 40px;
+   ${"" /*  border: 1px solid red; */}
     height: 40hw;
     width: 70vw;
     display: flex;
@@ -61,6 +63,10 @@ const StyledProfile = styled.div`
   }
   .icons {
     height: 1.2rem;
+    padding-left: 1rem;
+  }
+ .nameOf {
+  font-size: 24px;
   }
   h5{
     font-size:16px

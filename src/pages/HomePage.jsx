@@ -13,7 +13,6 @@ const StyledHomePage = styled.div`
   div {
     display: flex;
     flex-direction: column;
-    align-items: center;
     align-content: center;
     justify-content: center;
   }
@@ -27,6 +26,7 @@ const StyledHomePage = styled.div`
     padding-right: 40px;
   }
   h1 {
+    margin-top: 40px;
     font-size: 40px;
     padding-top: 200px;
   }
@@ -36,7 +36,7 @@ const StyledHomePage = styled.div`
   }
   p {
     font-size: 16px;
-    padding-top: 20px;
+    padding-top: 180px;
   }
   .link {
     text-decoration: none;

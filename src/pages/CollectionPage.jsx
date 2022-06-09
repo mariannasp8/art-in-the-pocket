@@ -79,13 +79,17 @@ const StyledCollection = styled.div`
     justify-content: center;
   }
   .detailsCollection {
-    ${"" /*  border: 1px solid red; */}
-    height: 30px;
-    width: 240px;
+    border: 1px solid red;
+    ${
+      "" /* height: 30px;
+    width: 240px; */
+    }
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    gap: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    ${"" /*  gap: 2rem; */}
   }
   .img-text {
     heigth: 10hw;
@@ -93,7 +97,7 @@ const StyledCollection = styled.div`
     ${"" /*  border: 1px solid black; */}
     display: flex;
     flex-direction: row;
-    align-items: center;
+
     justify-content: space-between;
   }
   #eachImg {
@@ -131,13 +135,22 @@ const StyledCollection = styled.div`
     ${"" /*  border: 1px solid white; */}
     height: 20px;
     width: 20px;
-    margin-left: 160px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-content: center;
     align-items: center;
     gap: 2rem;
+  }
+  .delete-icon {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 20px;
   }
   .removePiece-btn {
     margin-left: -240px;
@@ -152,8 +165,7 @@ const StyledCollection = styled.div`
     padding: 80px 20px 80px 20;
   }
   #details-btn {
-    margin-top: 10px;
-    margin-left: 130px;
+    ${"" /* margin-left: 130px; */}
     height: 25px;
     width: 55px;
     font-size: 9px;
@@ -289,13 +301,6 @@ function CollectionPage() {
                                   <p>{piece.date}</p>
 
                                   <div className="delete-icon">
-                                    <img
-                                      onClick={() =>
-                                        removePiece(piece._id, collec._id)
-                                      }
-                                      src={deleteIcon}
-                                      alt="delete-icon"
-                                    />
                                     <button id="details-btn">
                                       <Link
                                         className="stylink"
@@ -304,6 +309,14 @@ function CollectionPage() {
                                         Details
                                       </Link>
                                     </button>
+
+                                    <img
+                                      onClick={() =>
+                                        removePiece(piece._id, collec._id)
+                                      }
+                                      src={deleteIcon}
+                                      alt="delete-icon"
+                                    />
                                   </div>
                                 </div>
                               </div>
