@@ -12,8 +12,7 @@ const StyledProfile = styled.div`
   display: flex;
   flex-flow: column wrap;
   font-size: 1rem;
-  border: 1px solid purple;
-  height: 820px;
+  height: 100vh;
  
   
   .section1 {

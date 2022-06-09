@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
@@ -8,11 +7,11 @@ import Avatar from "../components/Avatar";
 import ProfilePicture from "../assets/images/bronzino-portrair-of-a-young-man-1530.jpg";
 import collectionIcon from "../assets/icons/collection.2.png";
 import NavbarBottom from "../components/NavbarBottom";
-import painting1 from "../assets/paintings/potato-joan-miro-1928.jpg";
-import painting2 from "../assets/paintings/joan-miro-contellation-toward-the-rainbow-1941.jpg";
 import deleteIcon from "../assets/icons/delete.2.png";
 import profileIcon from "../assets/icons/profile.2.png";
-import { Card, Carousel, Button } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const StyledCollection = styled.div`
   display: flex;
@@ -57,7 +56,7 @@ const StyledCollection = styled.div`
   }
   .collection1 {
     padding-top: 60px;
-    border: 1px solid red;
+
     height: 40hw;
     width: 80vw;
     display: flex;
@@ -79,7 +78,6 @@ const StyledCollection = styled.div`
     justify-content: center;
   }
   .detailsCollection {
-    border: 1px solid red;
     ${
       "" /* height: 30px;
     width: 240px; */
@@ -89,7 +87,9 @@ const StyledCollection = styled.div`
     justify-content: flex-start;
     align-items: center;
     align-content: center;
-    ${"" /*  gap: 2rem; */}
+    p {
+      margin: 0;
+    }
   }
   .img-text {
     heigth: 10hw;
@@ -131,6 +131,10 @@ const StyledCollection = styled.div`
   #col-name {
     font-size: 16px;
   }
+  .carousel {
+    width: 80vw;
+    height: auto;
+  }
   .delete-icon img {
     ${"" /*  border: 1px solid white; */}
     height: 20px;
@@ -144,7 +148,6 @@ const StyledCollection = styled.div`
     gap: 2rem;
   }
   .delete-icon {
-    border: 1px solid red;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -243,6 +246,17 @@ function CollectionPage() {
     }
   };
 
+  /*   function App(){
+    const notify = () => toast("Wow so easy!");
+
+    return (
+      <div>
+        <button onClick={notify}>Notify!</button>
+        <ToastContainer />
+      </div>
+    );
+  } */
+
   return (
     <StyledCollection>
       <div>
@@ -269,7 +283,7 @@ function CollectionPage() {
                     <b id="col-name">My Collection </b>
                     <em>{collec.title}</em>
                   </h4>
-                  <Carousel>
+                  <Carousel className="carousel">
                     {collec.pieces.length === 0 && (
                       <Carousel.Item>
                         <img
@@ -342,56 +356,3 @@ function CollectionPage() {
 }
 
 export default CollectionPage;
-
-{
-  /* <div className="allCollections">
-            {collections.length > 0 &&
-              collections.map((element) => {
-                return (
-                  <div className="eachCollection">
-                    <Carousel>
-                      {element.pieces.map((piece) => {
-                        return (
-                          <div className="piece-container">
-                            <Carousel.Item>
-                              <img
-                                className="d-block w-100"
-                                src={piece.img}
-                                alt="collectionImg"
-                              ></img>
-
-                              <Carousel.Caption>
-                                <div className="imgText">
-                                  <h5>{piece.title}</h5>
-                                  <p>{piece.author}</p>
-                                   <div>
-                                    <p>{piece.date}</p>
-                                  </div> 
-                                </div>
-                                <div className="delete-icon">
-                                  <img
-                                    onClick={() =>
-                                      removePiece(piece._id, element._id)
-                                    }
-                                    src={deleteIcon}
-                                    alt="delete-icon"
-                                  />
-                                </div>
-                              </Carousel.Caption>
-                            </Carousel.Item>
-                          </div>
-                        );
-                      })}
-                    </Carousel>
-                    <button
-                      className="removePiece-btn"
-                      onClick={() => deleteCollection(element._id)}
-                    >
-                      Delete Collection
-                    </button>
-                  </div>
-                );
-              })}
-          </div> 
-        */
-}

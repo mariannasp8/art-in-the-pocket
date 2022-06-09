@@ -15,26 +15,15 @@ const StyledPieaceCard = styled.div`
   align-items: center;
 
   .add-col-btn {
-    height: 30px;
-    width: 60px;
-    font-size: 9px;
-    background-color: ${({ theme }) => theme.colors.black || "#000000"};
-    border-style: none;
-    color: ${({ theme }) => theme.colors.white || " #ffffff"};
-    border-radius: 8px;
-    padding: 80px 20px 80px 20;
+    height: 26px;
+    width: 26px;
   }
   .add-fav-btn {
-    height: 30px;
-    width: 60px;
-    font-size: 9px;
-    background-color: ${({ theme }) => theme.colors.black || "#000000"};
-    border-style: none;
-    color: ${({ theme }) => theme.colors.white || " #ffffff"};
-    border-radius: 8px;
-    padding: 80px 20px 80px 20;
+    height: 26px;
+    width: 26px;
   }
   .btn-group {
+    border: 1px solid red;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -116,7 +105,7 @@ function PiecesCard({ item, user }) {
     <div>
       <StyledPieaceCard>
         <div id="img-group">
-          <img className="image" src={item.img} alt="pieces" width="200px" />
+          <img className="image" src={item.img} alt="pieces" width="250px" />
           {showModal && (
             <div id="modal">
               <select name="collection" id="collection" onChange={handleSelect}>
@@ -130,12 +119,19 @@ function PiecesCard({ item, user }) {
         </div>
 
         <div className="btn-group">
-          <button className="add-col-btn" onClick={handleButton}>
-            Add to Collection
-          </button>
-          <button className="add-fav-btn" onClick={addToFavorites}>
-            Add to Favorites
-          </button>
+          <img
+            className="add-fav-btn"
+            onClick={handleButton}
+            src={collectionIcon}
+            alt="collection-icon"
+          />
+
+          <img
+            className="add-col-btn"
+            onClick={addToFavorites}
+            src={heartIcon}
+            alt="heart-icon"
+          />
         </div>
       </StyledPieaceCard>
     </div>

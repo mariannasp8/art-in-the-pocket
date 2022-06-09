@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import homeIcon from "../assets/icons/home.2.png";
 import heartIcon from "../assets/icons/heart.2.png";
@@ -37,9 +37,8 @@ const SelectedIcon = styled.div`
   padding: 0;
   width: 30px;
   height: 30px;
-  ${"" /* border: 1px solid red; */}
 `;
-const NavLink = styled(Link)`
+const NavBarLink = styled(NavLink)`
   ${"" /* border: 1px solid blue; */}
   text-decoration: none;
   color: black;
@@ -48,13 +47,6 @@ const NavLink = styled(Link)`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  &:hover ${SelectedIcon} {
-    background-color: lightGrey;
-    ${"" /* border-radius: 52px; */}
-  }
-  &:active {
-    color: red;
-  }
 `;
 
 const NavIcons = styled.img`
@@ -69,31 +61,31 @@ function NavbarBottom() {
     <>
       <StyledPage>
         <StyledNavBottom>
-          <NavLink to="/">
+          <NavBarLink to="/">
             <SelectedIcon>
               <NavIcons src={homeIcon} />
             </SelectedIcon>
-          </NavLink>
-          <NavLink to="/favorite">
+          </NavBarLink>
+          <NavBarLink to="/favorite">
             <SelectedIcon>
               <NavIcons src={heartIcon} alt="Heart Icon" />
             </SelectedIcon>
-          </NavLink>
-          <NavLink to="/collection">
+          </NavBarLink>
+          <NavBarLink to="/collection">
             <SelectedIcon>
               <NavIcons src={collectionIcon} alt="Collection Icon" />
             </SelectedIcon>
-          </NavLink>
-          <NavLink to={`/profile`}>
+          </NavBarLink>
+          <NavBarLink to={`/profile`}>
             <SelectedIcon>
               <NavIcons src={profileIcon} alt="Profile Icon" />
             </SelectedIcon>
-          </NavLink>
-          <NavLink to="/search">
+          </NavBarLink>
+          <NavBarLink to="/search">
             <SelectedIcon>
               <NavIcons src={searchIcon} alt="Search Icon" />
             </SelectedIcon>
-          </NavLink>
+          </NavBarLink>
         </StyledNavBottom>
       </StyledPage>
     </>

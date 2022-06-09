@@ -9,6 +9,8 @@ const StyledHomePage = styled.div`
     display: flex;
     flex-flow: column wrap;
     font-size: 1rem;
+    ${"" /* font-family: "Unna", serif; */}
+    font-family: "Joan", serif;
   }
   div {
     display: flex;
@@ -26,9 +28,10 @@ const StyledHomePage = styled.div`
     padding-right: 40px;
   }
   h1 {
-    margin-top: 40px;
+    margin-top: 160px;
     font-size: 40px;
-    padding-top: 200px;
+    padding-top: 180px;
+    padding-bottom: 20px;
   }
   h5 {
     font-size: 40px;
@@ -36,7 +39,7 @@ const StyledHomePage = styled.div`
   }
   p {
     font-size: 16px;
-    padding-top: 180px;
+    padding-top: 60px;
   }
   .link {
     text-decoration: none;
@@ -48,7 +51,7 @@ const StyledHomePage = styled.div`
     ${"" /* background-position: center; */}
   }
   b {
-    color: black;
+    color: ${({ theme }) => theme.colors.white || " #ffffff"};
   }
 `;
 
@@ -64,7 +67,9 @@ function HomePage() {
         <div>
           <h1>Art in your pocket</h1>
           <div className="slogan">
-            <h5>The virtual world of art in your pocket</h5>
+            <h5>
+              <b>The virtual world of art in your pocket</b>
+            </h5>
           </div>
           <p>
             Don't know the app?{" "}

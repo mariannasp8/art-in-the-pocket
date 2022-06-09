@@ -155,7 +155,7 @@ function EditProfile() {
         setUsername("");
         setName("");
         setImg("");
-        navigate(`/profile}`);
+        navigate(`/profile`);
         // props.refreshProjects();
       })
       .catch((err) => console.log(err));
