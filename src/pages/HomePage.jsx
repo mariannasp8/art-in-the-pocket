@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import homeImage from "../assets/images/splash_01.jpg";
@@ -85,10 +85,6 @@ function HomePage() {
               <b>login</b>
             </Link>
           </p>
-
-          <div>
-            {/* <Link to={`/profile/${user._id}`}> My Profile</Link> */}
-          </div>
         </div>
       </body>
     </StyledHomePage>

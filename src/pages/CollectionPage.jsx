@@ -8,7 +8,6 @@ import ProfilePicture from "../assets/images/bronzino-portrair-of-a-young-man-15
 import collectionIcon from "../assets/icons/collection.2.png";
 import NavbarBottom from "../components/NavbarBottom";
 import deleteIcon from "../assets/icons/delete.2.png";
-import profileIcon from "../assets/icons/profile.2.png";
 import { Carousel } from "react-bootstrap";
 import { AuthContext } from "../context/auth.context";
 
@@ -189,11 +188,14 @@ function CollectionPage() {
   const getCollections = async () => {
     const storedToken = localStorage.getItem("authToken");
     try {
-      let response = await axios.get("http://localhost:5005/api/collection", {
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      });
+      let response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/collection`,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
       console.log(response.data);
       setCollections(response.data);
     } catch (error) {
@@ -211,7 +213,7 @@ function CollectionPage() {
     const storedToken = localStorage.getItem("authToken");
     try {
       await axios.delete(
-        `http://localhost:5005/api/collection/${collectionId}`,
+        `${process.env.REACT_APP_API_URL}/api/collection/${collectionId}`,
         {
           headers: {
             Authorization: `Bearer ${storedToken}`,
@@ -231,7 +233,7 @@ function CollectionPage() {
       const body = { pieceId, collectionId };
       console.log(body);
       let response = await axios.put(
-        `http://localhost:5005/api/collection/delete-piece`,
+        `${process.env.REACT_APP_API_URL}/api/collection/delete-piece`,
         body,
         {
           headers: {

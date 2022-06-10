@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
-import PiecesCard from "../components/PiecesCard";
 import styled from "styled-components";
 import Avatar from "../components/Avatar";
 import ProfilePicture from "../assets/images/bronzino-portrair-of-a-young-man-1530.jpg";
 import heartIcon from "../assets/icons/heart.2.png";
-import { Card, Carousel, Button } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import deleteIcon from "../assets/icons/delete.2.png";
 
 const StyledFavorites = styled.div`
@@ -118,7 +117,7 @@ function FavoritePage() {
     const storedToken = localStorage.getItem("authToken");
     try {
       let response = await axios.get(
-        `http://localhost:5005/auth/profile/${user._id}`,
+        `${process.env.REACT_APP_API_URL}/auth/profile/${user._id}`,
         {
           headers: {
             Authorization: `Bearer ${storedToken}`,
@@ -141,7 +140,7 @@ function FavoritePage() {
 
     try {
       let response = await axios.delete(
-        `http://localhost:5005/api/favorites/delete-piece/${pieceid}`,
+        `${process.env.REACT_APP_API_URL}/api/favorites/delete-piece/${pieceid}`,
 
         {
           headers: {

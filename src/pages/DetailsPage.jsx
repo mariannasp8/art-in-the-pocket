@@ -96,7 +96,7 @@ function DetailsPage() {
     const storedToken = localStorage.getItem("authToken");
     try {
       let response = await axios.get(
-        `http://localhost:5005/api/details/${pieceId}`,
+        `${process.env.REACT_APP_API_URL}/api/details/${pieceId}`,
         {
           headers: {
             Authorization: `Bearer ${storedToken}`,

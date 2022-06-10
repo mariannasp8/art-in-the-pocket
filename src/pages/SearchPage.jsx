@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import styled from "styled-components";
@@ -114,7 +113,7 @@ function SearchPage() {
     const storedToken = localStorage.getItem("authToken");
     try {
       let response = await axios.get(
-        "http://localhost:5005/api/search-pieces",
+        `${process.env.REACT_APP_API_URL}/api/search-pieces`,
         {
           headers: {
             Authorization: `Bearer ${storedToken}`,

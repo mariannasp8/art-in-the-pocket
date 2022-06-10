@@ -90,7 +90,7 @@ function LoginPage() {
         navigate("/");
       })
       .catch((err) => {
-        // setErrorMessage(err.response.data.errorMessage);
+        setErrorMessage(err.response.data.errorMessage);
         console.log(err);
       });
   };
